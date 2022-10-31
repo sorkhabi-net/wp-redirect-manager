@@ -15,27 +15,29 @@ License: GPLv2 or later
 
 defined ('ABSPATH') or die ('Access denied!');
 
+// Autoload
 $autoload = dirname (__FILE__) . '/vendor/autoload.php';
 if (file_exists ($autoload)){
     require_once $autoload;
 }
 
+// Activate Plugin
 function activate_sdwprm (){
     if (class_exists('SDWPRM\\Base\\Activate')) {
         SDWPRM\Base\Activate::run();
     }
 }
+register_activation_hook (__FILE__, 'activate_sdwprm');
 
+// Deactivate Plugin
 function deactivate_sdwprm (){
     if (class_exists('SDWPRM\\Base\\Deactivate')) {
         SDWPRM\Base\Deactivate::run();
     }
 }
-
-register_activation_hook (__FILE__, 'activate_sdwprm');
 register_deactivation_hook (__FILE__, 'deactivate_sdwprm');
 
-
+// Initialize Plugin
 if (class_exists('SDWPRM\\Init')){
     SDWPRM\Init::run ();
 }
