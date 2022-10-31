@@ -11,6 +11,7 @@
     {
         return [
             Base\Enqueue::class,
+            Admin\Init::class,
         ];
     }
 
