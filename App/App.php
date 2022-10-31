@@ -1,17 +1,18 @@
 <?php
 /**
- * @package SD_WPRedirectManager
+ * @package SDWPRM
  */
 
  namespace SDWPRM;
 
- final class Init 
+use SDWPRM\Base\Controller;
+
+ final class App 
  {
     public static function get_processes ()
     {
         return [
-            Base\Enqueue::class,
-            Admin\Init::class,
+            Controllers\Admin::class,
         ];
     }
 

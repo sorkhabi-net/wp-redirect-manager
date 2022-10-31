@@ -1,14 +1,15 @@
 <?php
+
 /**
- * @package SD_WPRedirectManager
+ * @package SDWPRM
  */
 
- namespace SDWPRM\Base;
+namespace SDWPRM\Base;
 
- class Activate 
- {
-    public static function run ()
+class Activate extends Controller
+{
+    public static function run()
     {
         // do somethings...
     }
- }
+}

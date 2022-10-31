@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @package SD_WPRedirectManager
+ * @package SDWPRM
  */
 
-namespace SDWPRM\Api;
+namespace SDWPRM\Apis;
 
 class SettingsApi
 {

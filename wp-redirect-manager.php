@@ -1,6 +1,6 @@
 <?php
 /**
- * @package SD_WPRedirectManager
+ * @package SDWPRM
  */
 
 /*
@@ -38,6 +38,6 @@ function deactivate_sdwprm (){
 register_deactivation_hook (__FILE__, 'deactivate_sdwprm');
 
 // Initialize Plugin
-if (class_exists('SDWPRM\\Init')){
-    SDWPRM\Init::run ();
+if (class_exists('SDWPRM\\App')){
+    SDWPRM\App::run ();
 }
