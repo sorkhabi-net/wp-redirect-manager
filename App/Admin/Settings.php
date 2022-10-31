@@ -13,6 +13,6 @@ class Settings extends Controller
 {
     public function index ()
     {
-        require_once $this->admin_view_path . 'settings.php';
+        $this->admin_view('settings');
     }
 }

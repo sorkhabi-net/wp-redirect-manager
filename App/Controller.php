@@ -23,4 +23,13 @@ class Controller
         $this->view_path = $this->app_path . 'Views/';
         $this->admin_view_path = $this->view_path . 'Admin/';
     }
+    public function admin_view ($view_name, $compacts = null)
+    {
+        if ($compacts != null){
+            foreach ($compacts as $var_name => $var_value){
+                $$var_name = $var_value;
+            }
+        }
+        require_once $this->admin_view_path . $view_name . '.php';
+    }
 }

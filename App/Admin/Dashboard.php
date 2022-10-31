@@ -13,6 +13,7 @@ class Dashboard extends Controller
 {
     public function index ()
     {
-        require_once $this->admin_view_path . 'dashboard.php';
+        $date = date ('Y-m-d H:i:s');
+        $this->admin_view ('dashboard', compact ('date'));
     }
 }
