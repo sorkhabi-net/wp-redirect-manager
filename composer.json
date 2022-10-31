@@ -1,0 +1,19 @@
+{
+    "name": "sorkhabi-net/wp-redirect-manager",
+    "description": "WP Redirect Manager",
+    "type": "project",
+    "license": "GPLv2",
+    "autoload": {
+        "psr-4": {
+            "SDWPRM\\": "App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sorkhabi.NeT",
+            "email": "sorkhabi.net@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
