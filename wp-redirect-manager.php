@@ -13,6 +13,8 @@ Version: 0.0.1
 License: GPLv2 or later
 */
 
+defined ('ABSPATH') or die ('Access denied!');
+
 $autoload = dirname (__FILE__) . '/vendor/autoload.php';
 
 if (file_exists ($autoload)){
