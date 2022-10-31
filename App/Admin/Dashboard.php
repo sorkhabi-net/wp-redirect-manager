@@ -14,6 +14,6 @@ class Dashboard extends Controller
     public function index ()
     {
         $date = date ('Y-m-d H:i:s');
-        $this->admin_view ('dashboard', compact ('date'));
+        $this->admin_view ('dashboards', compact ('date'));
     }
 }
