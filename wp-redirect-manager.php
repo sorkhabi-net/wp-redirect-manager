@@ -10,4 +10,5 @@ Description: Wordpress Easy and Powerful redirect manager plugin.
 Author: Sorkh Dev "Sorkhabi.NeT"
 Author URI: https://sorkhabi.net/
 Version: 0.0.1
+License: GPLv2 or later
 */
