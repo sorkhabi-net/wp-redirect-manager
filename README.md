@@ -1,6 +1,6 @@
 # WordPress Redirect Manager Plugin
 
-Wordpress easy and powerful Redirect Manager plugin.
+Easy and powerful redirect manager plugin for wordpress cms.
 
 # How to use the plugin
 
