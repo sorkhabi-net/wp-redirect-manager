@@ -12,3 +12,9 @@ Author URI: https://sorkhabi.net/
 Version: 0.0.1
 License: GPLv2 or later
 */
+
+$autoload = dirname (__FILE__) . '/vendor/autoload.php';
+
+if (file_exists ($autoload)){
+    require_once $autoload;
+}
