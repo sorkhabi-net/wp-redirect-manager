@@ -3,7 +3,7 @@
         'name' => 'sorkhabi-net/wp-redirect-manager',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '761014e1dd3948a6529f520a6395c6296f078bcf',
+        'reference' => '064c5b8cac5d33dce345642f8689d3e7d4a38e5f',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'sorkhabi-net/wp-redirect-manager' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '761014e1dd3948a6529f520a6395c6296f078bcf',
+            'reference' => '064c5b8cac5d33dce345642f8689d3e7d4a38e5f',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
