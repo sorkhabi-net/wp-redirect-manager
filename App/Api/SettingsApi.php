@@ -51,8 +51,7 @@ class SettingsApi
                 $sub_menu['menu_title'],
                 $sub_menu['capability'],
                 $sub_menu['menu_slug'],
-                $sub_menu['callback'],
-                1
+                $sub_menu['callback']
             );
         }
     }
