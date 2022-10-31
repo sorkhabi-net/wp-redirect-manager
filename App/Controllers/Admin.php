@@ -19,7 +19,7 @@ class Admin extends Controller
         return [
             [
                 'page_title' => 'WP Redirect Manager',
-                'menu_title' => 'Redirect Manager',
+                'menu_title' => 'WP Redirect Manager',
                 'capability' => 'manage_options',
                 'menu_slug' => $this->plugin_slug . 'dashoard',
                 'callback' => [new Dashboard(), 'index'],

@@ -15,14 +15,16 @@ class Controller
     public $view_path;
     public $admin_view_path;
     public $plugin_slug;
+    public $plugin_version;
 
     public function __construct()
     {
         $this->plugin_slug = 'sdwprm_';
+        $this->plugin_version = '0.0.1';
         $this->plugin_path = plugin_dir_path(dirname(__FILE__, 2));
         $this->plugin_url = plugin_dir_url(dirname(__FILE__, 2));
         $this->app_path = plugin_dir_path(dirname(__FILE__, 1));
-        $this->asset_url = $this->plugin_url . 'asset/';
+        $this->asset_url = $this->plugin_url . 'assets/';
         $this->view_path = $this->app_path . 'Views/';
         $this->admin_view_path = $this->view_path . 'Admin/';
     }
