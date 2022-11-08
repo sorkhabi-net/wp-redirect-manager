@@ -5,7 +5,7 @@ Easy and powerful redirect manager plugin for wordpress cms.
 
 # How to use the plugin
 
-This is a wordpress plugin and for run this plugin you need a installed wordpress.
+This is a wordpress plugin, for run this plugin you need a installed wordpress.
 
 If you have a installed wordpress follow the steps below:
 
