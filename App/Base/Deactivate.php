@@ -8,8 +8,8 @@ namespace App\Base;
 
 class Deactivate extends Controller
 {
-    public static function run()
+    public function run()
     {
-        // do somethings...
+        update_option($this->plugin_slug . 'status', 0);
     }
 }
