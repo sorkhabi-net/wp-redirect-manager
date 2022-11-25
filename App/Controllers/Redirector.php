@@ -6,6 +6,7 @@
 
 namespace App\Controllers;
 
+use App\Apis\Helper;
 use App\Base\Controller;
 
 class Redirector extends Controller
@@ -53,16 +54,16 @@ class Redirector extends Controller
             $uri = mb_substr($uri, $wp_uri_len, null, 'UTF-8');
         }
 
-        $rule = $wpdb->get_row($wpdb->prepare(
-            "SELECT * FROM `{$this->rules_table_name}` WHERE `uri`='%s' and `status`='1' LIMIT 1",
-            $uri
-        ));
+        $uri_hash = Helper::hash ($uri);
+
+        $rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri_hash`='{$uri_hash}' and `status`='1' LIMIT 1");
 
         if ($rule !== null){
             // Update view count
             $wpdb->query("UPDATE `{$this->rules_table_name}` SET `view` = `view`+1 WHERE `id`='{$rule->id}' LIMIT 1");
             // Redirect
             $r = 'Location: ' . $rule->redirect_to;
+            // TODO: Add Http status code
             header ($r);
             exit;
         }
