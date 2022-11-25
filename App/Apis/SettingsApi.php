@@ -4,7 +4,7 @@
  * @package SDWPRM
  */
 
-namespace SDWPRM\Apis;
+namespace App\Apis;
 
 class SettingsApi
 {

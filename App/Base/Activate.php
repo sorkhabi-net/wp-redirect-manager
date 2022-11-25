@@ -4,7 +4,7 @@
  * @package SDWPRM
  */
 
-namespace SDWPRM\Base;
+namespace App\Base;
 
 class Activate extends Controller
 {

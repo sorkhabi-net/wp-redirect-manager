@@ -5,7 +5,7 @@
 
  namespace SDWPRM;
 
-use SDWPRM\Base\Controller;
+use App\Base\Controller;
 
  final class App 
  {

@@ -4,9 +4,9 @@
  * @package SDWPRM
  */
 
-namespace SDWPRM\Controllers\Admin;
+namespace App\Controllers\Admin;
 
-use SDWPRM\Base\Controller;
+use App\Base\Controller;
 
 class Dashboard extends Controller
 {

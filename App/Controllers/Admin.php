@@ -4,13 +4,13 @@
  * @package SDWPRM
  */
 
-namespace SDWPRM\Controllers;
+namespace App\Controllers;
 
-use SDWPRM\Apis\SettingsApi;
-use SDWPRM\Base\Controller;
-use SDWPRM\Controllers\Admin\Enqueue;
-use SDWPRM\Controllers\Admin\Dashboard;
-use SDWPRM\Controllers\Admin\Settings;
+use App\Apis\SettingsApi;
+use App\Base\Controller;
+use App\Controllers\Admin\Enqueue;
+use App\Controllers\Admin\Dashboard;
+use App\Controllers\Admin\Settings;
 
 class Admin extends Controller
 {
