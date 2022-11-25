@@ -3,7 +3,7 @@
  * @package SDWPRM
  */
 
- namespace SDWPRM;
+namespace App;
 
 use App\Base\Controller;
 
