@@ -18,11 +18,11 @@ If you have a installed wordpress follow the steps below:
 
 # Version
 
-0.0.1
+0.1.0
 
 # Last update
 
-2022-10-31
+2022-11-25
 
 # License
 

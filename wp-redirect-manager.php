@@ -10,7 +10,7 @@ Description: Wordpress Easy and Powerful redirect manager plugin.
 Author: Sorkh Dev "Sorkhabi.NeT"
 Author URI: https://sorkhabi.net/
 Text Domain: SDWPRM
-Version: 0.0.1
+Version: 0.1.0
 License: GPLv2 or later
 */
 
