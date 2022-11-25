@@ -16,9 +16,11 @@ class Controller
     public $admin_view_path;
     public $plugin_slug;
     public $plugin_version;
+    public $rules_table_name;
 
     public function __construct()
     {
+        global $wpdb;
         $this->plugin_slug = 'sdwprm_';
         $this->plugin_version = '0.0.1';
         $this->plugin_path = plugin_dir_path(dirname(__FILE__, 2));
@@ -27,6 +29,7 @@ class Controller
         $this->asset_url = $this->plugin_url . 'assets/';
         $this->view_path = $this->app_path . 'Views/';
         $this->admin_view_path = $this->view_path . 'Admin/';
+        $this->rules_table_name = $wpdb->prefix . $this->plugin_slug . 'rules';
     }
     public function admin_view($view_name, $compacts = null)
     {
