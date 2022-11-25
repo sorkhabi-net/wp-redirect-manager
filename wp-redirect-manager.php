@@ -22,20 +22,18 @@ if (file_exists ($autoload)){
 }
 
 // Activate Plugin
-function activate_sdwprm (){
+register_activation_hook (__FILE__, function (){
     if (class_exists('App\\Base\\Activate')) {
         App\Base\Activate::run();
     }
-}
-register_activation_hook (__FILE__, 'activate_sdwprm');
+});
 
 // Deactivate Plugin
-function deactivate_sdwprm (){
+register_deactivation_hook (__FILE__, function (){
     if (class_exists('App\\Base\\Deactivate')) {
         App\Base\Deactivate::run();
     }
-}
-register_deactivation_hook (__FILE__, 'deactivate_sdwprm');
+});
 
 // Initialize Plugin
 if (class_exists('App\\App')){
