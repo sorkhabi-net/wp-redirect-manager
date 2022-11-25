@@ -26,14 +26,14 @@ if (file_exists ($autoload)){
 // Activate Plugin
 register_activation_hook (__FILE__, function (){
     if (class_exists('App\\Base\\Activate')) {
-        App\Base\Activate::run();
+        (new App\Base\Activate)->run();
     }
 });
 
 // Deactivate Plugin
 register_deactivation_hook (__FILE__, function (){
     if (class_exists('App\\Base\\Deactivate')) {
-        App\Base\Deactivate::run();
+        (new App\Base\Deactivate)->run();
     }
 });
 
