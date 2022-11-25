@@ -13,6 +13,7 @@ use App\Base\Controller;
     {
         return [
             Controllers\Admin::class,
+            Controllers\Redirector::class,
         ];
     }
 
