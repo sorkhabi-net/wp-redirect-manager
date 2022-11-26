@@ -1,8 +1,4 @@
-<?php
-
-use App\Apis\Helper;
-
-defined('ABSPATH') or die('Access denied!'); ?>
+<?php defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">
 
     <h1>Redirect rules management</h1>
