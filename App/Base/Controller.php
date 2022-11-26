@@ -29,12 +29,28 @@ class Controller
         $this->asset_url = $this->plugin_url . 'assets/';
         $this->view_path = $this->app_path . 'Views/';
         $this->admin_view_path = $this->view_path . 'admin/';
+        $this->system_view_path = $this->view_path . 'system/';
         $this->rules_table_name = $wpdb->prefix . $this->plugin_slug . 'rules';
     }
     public function admin_view($view_name, $compacts = null)
     {
         $view_name = str_replace('.', '/', $view_name);
         $view_file = $this->admin_view_path . $view_name . '.php';
+        if (is_file($view_file)) {
+            if ($compacts != null) {
+                foreach ($compacts as $var_name => $var_value) {
+                    $$var_name = $var_value;
+                }
+            }
+            require_once $view_file;
+        } else {
+            echo 'View file is not exists. "' . $view_file . '"';
+        }
+    }
+    public function system_view($view_name, $compacts = null)
+    {
+        $view_name = str_replace('.', '/', $view_name);
+        $view_file = $this->system_view_path . $view_name . '.php';
         if (is_file($view_file)) {
             if ($compacts != null) {
                 foreach ($compacts as $var_name => $var_value) {
