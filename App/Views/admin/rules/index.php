@@ -30,8 +30,8 @@
                         <td class="manage-column">
                             <form action="<?php echo $this->route('rules.delete'); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo  $rule->id; ?>">
-                                <button type="submit" class="button button-link-delete">Delete</button>
-                                <!-- onclick=" return confirm ('Are you sure delete this item?');" -->
+                                <input name="form_nonce" type="hidden" value="<?= wp_create_nonce($this->plugin_slug . 'delete_rule') ?>" />
+                                <button type="submit" onclick=" return confirm ('Are you sure delete this item?');" class="button button-link-delete">Delete</button>
                             </form>
                         </td>
                     </tr>
