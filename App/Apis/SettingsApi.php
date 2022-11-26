@@ -40,7 +40,7 @@ class SettingsApi extends controller
     {
         foreach ($page ['sub_pages'] as $sub_page){
             $parent_slug = $this->plugin_slug . $page['menu_slug'];
-            if (count ($sub_page) == 1){
+            if (count ($sub_page) == 1 or count($sub_page) == 2){
                 $sub_menu = $page;
                 $sub_menu ['menu_title'] = $sub_page ['menu_title'];
                 $sub_menu ['callback'] = null;
@@ -66,5 +66,6 @@ class SettingsApi extends controller
         if (count ($this->admin_pages) > 0){
             add_action ('admin_menu', [$this, 'add_admin_menu']);
         }
+        
     }
 }
