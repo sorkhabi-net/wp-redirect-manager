@@ -8,7 +8,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
     <h1>Redirect rules management</h1>
     <?php if ($rules !== null and count($rules) > 0) { ?>
         <p>
-            <a href="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=create'); ?>" class="button button-primary"><strong>+ Add new redirect rule</strong></a>
+            <a href="<?php echo $this->route('rules.create'); ?>" class="button button-primary"><strong>+ Add new redirect rule</strong></a>
         </p>
         <table class="wp-list-table widefat striped">
             <thead>
@@ -29,10 +29,10 @@ defined('ABSPATH') or die('Access denied!'); ?>
                         <td class="manage-column"><?php echo $rule->redirect_to; ?></td>
                         <td class="manage-column"><?php echo number_format($rule->view); ?></td>
                         <td class="manage-column">
-                            <a href="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=edit&id=' . $rule->id); ?>" class="button button-scondary">Edit</a>
+                            <a href="<?php echo $this->route('rules.edit', ['id' => $rule->id]); ?>" class="button button-scondary">Edit</a>
                         </td>
                         <td class="manage-column">
-                            <form action="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=delete'); ?>" method="post">
+                            <form action="<?php echo $this->route('rules.delete'); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo  $rule->id; ?>">
                                 <button type="submit" class="button button-link-delete">Delete</button>
                                 <!-- onclick=" return confirm ('Are you sure delete this item?');" -->
@@ -44,7 +44,9 @@ defined('ABSPATH') or die('Access denied!'); ?>
         </table>
     <?php } else { ?>
         <div class="notice notice-danger is-dismissible">
-            <p><?php _e('You have not registered anything. <a href=""><strong>Add new redirect rule</strong></a>', 'SDWPRM'); ?></p>
+            <p><?php _e('You have not registered anything.', 'SDWPRM'); ?>
+                <a href="<?php echo $this->route('rules.create'); ?>"><strong><?php _e('Add new redirect rule', 'SDWPRM'); ?></strong></a>
+            </p>
         </div>
     <?php } ?>
 </div>
