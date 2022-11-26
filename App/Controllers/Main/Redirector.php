@@ -4,7 +4,7 @@
  * @package SDWPRM
  */
 
-namespace App\Controllers;
+namespace App\Controllers\Main;
 
 use App\Apis\Helper;
 use App\Base\Controller;

@@ -6,6 +6,7 @@
 
 namespace App\Apis;
 use App\Base\Controller;
+use App\Controllers\AdminRouter;
 
 class SettingsApi extends controller
 {
@@ -26,7 +27,7 @@ class SettingsApi extends controller
                 $page ['menu_title'],
                 $page ['capability'],
                 $this->plugin_slug . $page ['menu_slug'],
-                $page ['callback'],
+                [new AdminRouter(), 'run'],
                 $page ['icon_url'],
                 $page ['position']
             );
@@ -43,12 +44,13 @@ class SettingsApi extends controller
             if (count ($sub_page) == 1 or count($sub_page) == 2){
                 $sub_menu = $page;
                 $sub_menu ['menu_title'] = $sub_page ['menu_title'];
-                $sub_menu ['callback'] = null;
+                $callback = null;
             }else{
                 $sub_menu = $sub_page;
                 if (isset ($sub_page ['show_in_menu']) and $sub_page ['show_in_menu'] == false){
                     $parent_slug = null;
                 }
+                $callback = [new AdminRouter (), 'run'];
             }
             add_submenu_page(
                 $parent_slug,
@@ -56,7 +58,7 @@ class SettingsApi extends controller
                 $sub_menu['menu_title'],
                 $sub_menu['capability'],
                 $this->plugin_slug . $sub_menu['menu_slug'],
-                $sub_menu['callback']
+                $callback
             );
         }
     }

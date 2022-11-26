@@ -12,8 +12,8 @@ use App\Base\Controller;
     public static function get_processes ()
     {
         return [
-            Controllers\Admin::class,
-            Controllers\Redirector::class,
+            Controllers\AdminMenuPage::class,
+            Controllers\Main\Redirector::class,
         ];
     }
 

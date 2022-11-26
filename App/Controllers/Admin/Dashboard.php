@@ -12,7 +12,9 @@ class Dashboard extends Controller
 {
     public function index()
     {
-        $date = date('Y-m-d H:i:s');
-        $this->admin_view('dashboard', compact('date'));
+        global $wpdb;
+        $rules = $wpdb->get_results("SELECT * FROM `{$this->rules_table_name}` ORDER BY `id` DESC LIMIT 3");
+        
+        $this->admin_view('dashboard', compact('rules'));
     }
 }
