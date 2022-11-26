@@ -32,7 +32,11 @@ defined('ABSPATH') or die('Access denied!'); ?>
                             <a href="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=edit&id=' . $rule->id); ?>" class="button button-scondary">Edit</a>
                         </td>
                         <td class="manage-column">
-                            <a href="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=delete&id=' . $rule->id); ?>" class="button button-link-delete" onclick=" return confirm ('Are you sure delete this item?');">Delete</a>
+                            <form action="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=delete'); ?>" method="post">
+                                <input type="hidden" name="id" value="<?php echo  $rule->id; ?>">
+                                <button type="submit" class="button button-link-delete">Delete</button>
+                                <!-- onclick=" return confirm ('Are you sure delete this item?');" -->
+                            </form>
                         </td>
                     </tr>
                 <?php } ?>
