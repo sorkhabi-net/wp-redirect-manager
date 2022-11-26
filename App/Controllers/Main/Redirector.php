@@ -6,7 +6,7 @@
 
 namespace App\Controllers\Main;
 
-use App\Apis\Helper;
+use App\Base\Helper;
 use App\Base\Controller;
 
 class Redirector extends Controller

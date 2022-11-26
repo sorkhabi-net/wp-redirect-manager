@@ -4,12 +4,9 @@
  * @package SDWPRM
  */
 
-namespace App\Controllers;
+namespace App\Base;
 
-use App\Apis\SettingsApi;
-use App\Base\Controller;
 use App\Controllers\Admin\Enqueue;
-use App\Controllers\Router;
 
 class AdminMenuPage extends Controller
 {

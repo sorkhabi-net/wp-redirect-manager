@@ -12,7 +12,7 @@ use App\Base\Controller;
     public static function get_processes ()
     {
         return [
-            Controllers\AdminMenuPage::class,
+            Base\AdminMenuPage::class,
             Controllers\Main\Redirector::class,
         ];
     }

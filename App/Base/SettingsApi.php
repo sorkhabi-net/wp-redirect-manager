@@ -4,9 +4,9 @@
  * @package SDWPRM
  */
 
-namespace App\Apis;
+namespace App\Base;
 use App\Base\Controller;
-use App\Controllers\AdminRouter;
+use App\Routers\Admin;
 
 class SettingsApi extends controller
 {
@@ -27,7 +27,7 @@ class SettingsApi extends controller
                 $page ['menu_title'],
                 $page ['capability'],
                 $this->plugin_slug . $page ['menu_slug'],
-                [new AdminRouter(), 'run'],
+                [new Admin(), 'run'],
                 $page ['icon_url'],
                 $page ['position']
             );
@@ -50,7 +50,7 @@ class SettingsApi extends controller
                 if (isset ($sub_page ['show_in_menu']) and $sub_page ['show_in_menu'] == false){
                     $parent_slug = null;
                 }
-                $callback = [new AdminRouter (), 'run'];
+                $callback = [new Admin (), 'run'];
             }
             add_submenu_page(
                 $parent_slug,

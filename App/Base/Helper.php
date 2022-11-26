@@ -4,7 +4,7 @@
  * @package SDWPRM
  */
 
-namespace App\Apis;
+namespace App\Base;
 
 class Helper
 {

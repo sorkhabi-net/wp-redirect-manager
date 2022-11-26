@@ -4,14 +4,14 @@
  * @package SDWPRM
  */
 
-namespace App\Controllers;
+namespace App\Routers;
 
 use App\Base\Controller;
 use App\Controllers\Admin\Dashboard;
 use App\Controllers\Admin\Settings;
 use App\Controllers\Admin\AddNewRule;
 
-class AdminRouter extends Controller
+class Admin extends Controller
 {
     public function routes ()
     {
