@@ -17,6 +17,7 @@ use App\Base\Notice;
                     <th class="manage-column">From</th>
                     <th>Redirect To</th>
                     <th>View</th>
+                    <th>Status</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -28,6 +29,7 @@ use App\Base\Notice;
                         <td class="manage-column">/<?php echo $rule->uri; ?></td>
                         <td class="manage-column"><?php echo $rule->redirect_to; ?></td>
                         <td class="manage-column"><?php echo number_format($rule->view); ?></td>
+                        <td class="manage-column"><?php echo ($rule->status ? __('Active') : __('Deactive')); ?></td>
                         <td class="manage-column">
                             <a href="<?php echo $this->route('rules.edit', ['id' => $rule->id]); ?>" class="button button-scondary">Edit</a>
                         </td>
