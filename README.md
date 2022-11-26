@@ -18,7 +18,7 @@ If you have a installed wordpress follow the steps below:
 
 # Version
 
-0.3.0
+0.4.3
 
 # Last update
 

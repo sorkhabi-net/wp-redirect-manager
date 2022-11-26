@@ -22,7 +22,7 @@ class Controller
     {
         global $wpdb;
         $this->plugin_slug = 'sdwprm_';
-        $this->plugin_version = '0.3.0';
+        $this->plugin_version = '0.4.3';
         $this->plugin_path = plugin_dir_path(dirname(__FILE__, 2));
         $this->plugin_url = plugin_dir_url(dirname(__FILE__, 2));
         $this->app_path = plugin_dir_path(dirname(__FILE__, 1));
