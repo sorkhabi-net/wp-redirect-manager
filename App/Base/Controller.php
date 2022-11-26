@@ -32,6 +32,10 @@ class Controller
         $this->system_view_path = $this->view_path . 'system/';
         $this->rules_table_name = $wpdb->prefix . $this->plugin_slug . 'rules';
     }
+    public function route ($route_name, $params = null)
+    {
+        return Helper::route ($route_name, $params);
+    }
     public function admin_view($view_name, $compacts = null)
     {
         $view_name = str_replace('.', '/', $view_name);
