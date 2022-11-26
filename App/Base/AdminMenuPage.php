@@ -20,7 +20,7 @@ class AdminMenuPage extends Controller
                 'position' => 75,
                 'sub_pages' => [
                     [
-                        'menu_title' => __('Rules', 'SDWPRM'),
+                        'menu_title' => __('Redirect rules', 'SDWPRM'),
                         'show_in_settings' => true,
                     ],
                     [
