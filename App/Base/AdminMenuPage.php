@@ -6,8 +6,6 @@
 
 namespace App\Base;
 
-use App\Controllers\Admin\Enqueue;
-
 class AdminMenuPage extends Controller
 {
     private function pages ()
@@ -44,7 +42,7 @@ class AdminMenuPage extends Controller
         $settings->addPages ($this->pages ())->run ();
 
         // Enable Admin Enqueue
-        $admin_enqueue = new Enqueue ();
+        $admin_enqueue = new AdminEnqueue ();
         $admin_enqueue->run ();
     }
 }

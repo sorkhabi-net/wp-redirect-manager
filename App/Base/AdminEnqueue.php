@@ -3,11 +3,9 @@
  * @package SDWPRM
  */
 
-namespace App\Controllers\Admin;
+namespace App\Base;
 
-use App\Base\Controller;
-
-class Enqueue extends Controller
+class AdminEnqueue extends Controller
 {
     public function enqueue ()
     {

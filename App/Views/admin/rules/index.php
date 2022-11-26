@@ -8,7 +8,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
     <h1>Redirect rules management</h1>
     <?php if ($rules !== null and count($rules) > 0) { ?>
         <p>
-            <a href="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=add_new_rule'); ?>" class="button button-primary"><strong>+ Add new redirect rule</strong></a>
+            <a href="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=create'); ?>" class="button button-primary"><strong>+ Add new redirect rule</strong></a>
         </p>
         <table class="wp-list-table widefat striped">
             <thead>
@@ -29,10 +29,10 @@ defined('ABSPATH') or die('Access denied!'); ?>
                         <td class="manage-column"><?php echo $rule->redirect_to; ?></td>
                         <td class="manage-column"><?php echo number_format($rule->view); ?></td>
                         <td class="manage-column">
-                            <a href="#" class="button button-scondary">Edit</a>
+                            <a href="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=edit&id=' . $rule->id); ?>" class="button button-scondary">Edit</a>
                         </td>
                         <td class="manage-column">
-                            <a href="#" class="button button-link-delete" onclick=" return confirm ('Are you sure delete this item?');">Delete</a>
+                            <a href="<?php echo admin_url('admin.php?page=' . $this->plugin_slug . 'rules&action=delete&id=' . $rule->id); ?>" class="button button-link-delete" onclick=" return confirm ('Are you sure delete this item?');">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>

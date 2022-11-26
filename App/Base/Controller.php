@@ -28,11 +28,12 @@ class Controller
         $this->app_path = plugin_dir_path(dirname(__FILE__, 1));
         $this->asset_url = $this->plugin_url . 'assets/';
         $this->view_path = $this->app_path . 'Views/';
-        $this->admin_view_path = $this->view_path . 'Admin/';
+        $this->admin_view_path = $this->view_path . 'admin/';
         $this->rules_table_name = $wpdb->prefix . $this->plugin_slug . 'rules';
     }
     public function admin_view($view_name, $compacts = null)
     {
+        $view_name = str_replace('.', '/', $view_name);
         $view_file = $this->admin_view_path . $view_name . '.php';
         if (is_file($view_file)) {
             if ($compacts != null) {
