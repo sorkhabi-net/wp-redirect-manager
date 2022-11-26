@@ -5,54 +5,56 @@
  */
 
 namespace App\Base;
+
 use App\Base\Controller;
-use App\Routers\Admin;
 
 class SettingsApi extends controller
 {
     public $admin_pages = [];
 
-    public function AddPages (array $pages)
+    public function AddPages(array $pages)
     {
         $this->admin_pages = $pages;
 
         return $this;
     }
 
-    public function add_admin_menu ()
+    public function add_admin_menu()
     {
-        foreach ($this->admin_pages as $page){
-            add_menu_page(
-                $page ['page_title'],
-                $page ['menu_title'],
-                $page ['capability'],
-                $this->plugin_slug . $page ['menu_slug'],
-                [new Admin(), 'run'],
-                $page ['icon_url'],
-                $page ['position']
+        foreach ($this->admin_pages as $page) {
+            $callback = [new Router(), 'run'];
+            $hook = add_menu_page(
+                $page['page_title'],
+                $page['menu_title'],
+                $page['capability'],
+                $this->plugin_slug . $page['menu_slug'],
+                $callback,
+                $page['icon_url'],
+                $page['position']
             );
-            if (isset ($page['sub_pages']) and count ($page ['sub_pages']) > 0){
-                $this->add_admin_sub_menu ($page);
+            $this->request_callback_handler($hook, $callback);
+            if (isset($page['sub_pages']) and count($page['sub_pages']) > 0) {
+                $this->add_admin_sub_menu($page);
             }
         }
     }
 
-    public function add_admin_sub_menu ($page)
+    public function add_admin_sub_menu($page)
     {
-        foreach ($page ['sub_pages'] as $sub_page){
+        foreach ($page['sub_pages'] as $sub_page) {
             $parent_slug = $this->plugin_slug . $page['menu_slug'];
-            if (count ($sub_page) == 1 or count($sub_page) == 2){
+            if (count($sub_page) == 1 or count($sub_page) == 2) {
                 $sub_menu = $page;
-                $sub_menu ['menu_title'] = $sub_page ['menu_title'];
+                $sub_menu['menu_title'] = $sub_page['menu_title'];
                 $callback = null;
-            }else{
+            } else {
                 $sub_menu = $sub_page;
-                if (isset ($sub_page ['show_in_menu']) and $sub_page ['show_in_menu'] == false){
+                if (isset($sub_page['show_in_menu']) and $sub_page['show_in_menu'] == false) {
                     $parent_slug = null;
                 }
-                $callback = [new Admin (), 'run'];
+                $callback = [new Router(), 'run'];
             }
-            add_submenu_page(
+            $hook = add_submenu_page(
                 $parent_slug,
                 $sub_menu['page_title'],
                 $sub_menu['menu_title'],
@@ -60,10 +62,24 @@ class SettingsApi extends controller
                 $this->plugin_slug . $sub_menu['menu_slug'],
                 $callback
             );
+            $this->request_callback_handler($hook, $callback);
         }
     }
 
-    public function settings_link ($links)
+    public function request_callback_handler($hook, $callback)
+    {
+        add_action('load-' . $hook, function () use ($callback) {
+            if ($callback !== null) {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $class = new $callback[0]();
+                    $class->{$callback[1]}();
+                    exit();
+                }
+            }
+        });
+    }
+
+    public function settings_link($links)
     {
         $pages = $this->admin_pages;
         foreach ($pages as $page) {
@@ -85,11 +101,10 @@ class SettingsApi extends controller
 
     public function run()
     {
-        if (count ($this->admin_pages) > 0){
-            add_action ('admin_menu', [$this, 'add_admin_menu']);
+        if (count($this->admin_pages) > 0) {
+            add_action('admin_menu', [$this, 'add_admin_menu']);
             // Add settings link in plugin page
             add_filter('plugin_action_links_' . SDWPRM_BASE_FILE, [$this, 'settings_link']);
         }
-        
     }
 }
