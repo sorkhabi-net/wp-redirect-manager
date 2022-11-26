@@ -1,5 +1,10 @@
-<?php defined('ABSPATH') or die('Access denied!'); ?>
+<?php
+
+use App\Base\Notice;
+
+ defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">
+    <?php Notice::show(); ?>
     <h1>Add new redirect rule</h1>
     <form action="<?php echo $this->route('rules.create'); ?>" method="POST">
         <input name="form_nonce" type="hidden" value="<?= wp_create_nonce($this->plugin_slug . 'create_rule') ?>" />

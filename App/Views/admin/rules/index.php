@@ -1,6 +1,10 @@
-<?php defined('ABSPATH') or die('Access denied!'); ?>
-<div class="wrap">
+<?php
 
+use App\Base\Notice;
+
+ defined('ABSPATH') or die('Access denied!'); ?>
+<div class="wrap">
+    <?php Notice::show(); ?>
     <h1>Redirect rules management</h1>
     <?php if ($rules !== null and count($rules) > 0) { ?>
         <p>
