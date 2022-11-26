@@ -61,10 +61,32 @@ class SettingsApi extends controller
         }
     }
 
+    public function settings_link ($links)
+    {
+        $pages = $this->admin_pages;
+        foreach ($pages as $page) {
+            foreach ($page['sub_pages'] as $sub_page) {
+                if ($sub_page['show_in_settings']) {
+                    if (isset($sub_page['menu_slug'])) {
+                        $slug = $sub_page['menu_slug'];
+                    } else {
+                        $slug = $page['menu_slug'];
+                    }
+                    $slug = $this->plugin_slug . $slug;
+                    $settings_link = '<a href="' . admin_url('admin.php?page=' . $slug) . '">' . $sub_page['menu_title'] . '</a>';
+                    $links[] = $settings_link;
+                }
+            }
+        }
+        return $links;
+    }
+
     public function run()
     {
         if (count ($this->admin_pages) > 0){
             add_action ('admin_menu', [$this, 'add_admin_menu']);
+            // Add settings link in plugin page
+            add_filter('plugin_action_links_' . SDWPRM_BASE_FILE, [$this, 'settings_link']);
         }
         
     }
