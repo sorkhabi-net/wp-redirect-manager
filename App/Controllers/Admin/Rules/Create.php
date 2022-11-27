@@ -51,7 +51,7 @@ class Create extends Controller
             ['%s', '%s', '%s', '%d']
         );
         if ($result) {
-            wp_redirect($this->route('rules'));
+            wp_redirect($this->route('rules', ['notice' => 'rule_created_successfully']));
             exit();
         } else {
             _e('Error while adding data.');
