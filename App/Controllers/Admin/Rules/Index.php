@@ -15,7 +15,7 @@ class Index extends Controller
         global $wpdb;
 
         $items_per_page = 10;
-        $page = isset($_GET['cpage']) ? abs((int) $_GET['cpage']) : 1;
+        $page = isset($_GET['cpage']) ? intval ($_GET['cpage']) : 1;
         $offset = ($page * $items_per_page) - $items_per_page;
 
         $query = "SELECT * FROM `{$this->rules_table_name}`";
