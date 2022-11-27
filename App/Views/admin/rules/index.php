@@ -2,7 +2,7 @@
 
 use App\Base\Notice;
 
- defined('ABSPATH') or die('Access denied!'); ?>
+defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">
     <?php Notice::show(); ?>
     <h1>Redirect rules management</h1>
@@ -23,13 +23,44 @@ use App\Base\Notice;
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($rules as $rule) { ?>
+                <?php
+                foreach ($rules as $rule) {
+                    if ($rule->status == 0) {
+                        $class = 'rule_is_deactive';
+                        $rule_status = __('Deactive');
+                        $rule_status_class = 'rule_status_deactive';
+                    }else{
+                        $class = '';
+                        $rule_status = __('active');
+                        $rule_status_class = 'rule_status_active';
+                    }
+                ?>
                     <tr>
-                        <td class="manage-column "><?php echo $rule->id; ?></td>
-                        <td class="manage-column">/<?php echo $rule->uri; ?></td>
-                        <td class="manage-column"><?php echo $rule->redirect_to; ?></td>
-                        <td class="manage-column"><?php echo number_format($rule->view); ?></td>
-                        <td class="manage-column"><?php echo ($rule->status ? __('Active') : __('Deactive')); ?></td>
+                        <td class="manage-column">
+                            <span class="<?php echo $class; ?>">
+                                <?php echo $rule->id; ?>
+                            </span>
+                        </td>
+                        <td class="manage-column">
+                            <span class="<?php echo $class; ?>" dir="ltr">
+                                /<?php echo $rule->uri; ?>
+                            </span>
+                        </td>
+                        <td class="manage-column">
+                            <span class="<?php echo $class; ?>" dir="ltr">
+                                <?php echo $rule->redirect_to; ?>
+                            </span>
+                        </td>
+                        <td class="manage-column">
+                            <span class="<?php echo $class; ?>">
+                            <?php echo number_format($rule->view); ?>
+                            </span>
+                        </td>
+                        <td class="manage-column">
+                            <span class="<?php echo $rule_status_class; ?>">
+                                <?php echo $rule_status; ?>
+                            </span>
+                        </td>
                         <td class="manage-column">
                             <a href="<?php echo $this->route('rules.edit', ['id' => $rule->id]); ?>" class="button button-scondary">Edit</a>
                         </td>

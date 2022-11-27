@@ -1,0 +1,10 @@
+.rule_is_deactive {
+    text-decoration: line-through;
+    color: rgb(107, 0, 0);
+}
+.rule_status_deactive {
+    color: red;
+}
+.rule_status_active {
+    color: green;
+}
