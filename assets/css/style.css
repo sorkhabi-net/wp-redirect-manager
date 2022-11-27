@@ -8,3 +8,20 @@
 .rule_status_active {
     color: green;
 }
+.page-links a, .page-links .page-numbers.dots {
+    border: 1px solid #2271b1;
+    padding: 10px 14px 10px 14px;
+    border-radius: 4px;
+    background-color: #f6f7f7;
+    text-decoration: none;
+    margin-left: 5px;
+}
+.page-links .page-numbers.current, .page-links a:hover {
+    border: 1px solid #132f66;
+    padding: 10px 14px 10px 14px;
+    border-radius: 4px;
+    background-color: #2271b1;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 5px;
+}

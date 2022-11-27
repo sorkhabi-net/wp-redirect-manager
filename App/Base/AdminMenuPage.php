@@ -44,5 +44,10 @@ class AdminMenuPage extends Controller
         // Enable Admin Enqueue
         $admin_enqueue = new AdminEnqueue ();
         $admin_enqueue->run ();
+
+        // For remove notice from pagination url
+        add_filter('paginate_links', function ($link) {
+            return filter_input(INPUT_GET, 'notice') ? remove_query_arg('notice', $link): $link;
+        });
     }
 }

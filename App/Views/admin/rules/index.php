@@ -29,7 +29,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                         $class = 'rule_is_deactive';
                         $rule_status = __('Deactive');
                         $rule_status_class = 'rule_status_deactive';
-                    }else{
+                    } else {
                         $class = '';
                         $rule_status = __('active');
                         $rule_status_class = 'rule_status_active';
@@ -53,7 +53,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                         </td>
                         <td class="manage-column">
                             <span class="<?php echo $class; ?>">
-                            <?php echo number_format($rule->view); ?>
+                                <?php echo number_format($rule->view); ?>
                             </span>
                         </td>
                         <td class="manage-column">
@@ -75,6 +75,23 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 <?php } ?>
             </tbody>
         </table>
+        <?php
+        $page_links = paginate_links([
+            'base' => add_query_arg(['cpage' => '%#%']),
+            'prev_text' => __('&laquo;'),
+            'next_text' => __('&raquo;'),
+            'total' => ceil($total / $items_per_page),
+            'current' => $page
+        ]);
+        if ($page_links){
+            echo '
+            <div class="tablenav bottom">
+            <div class="tablenav-pages">
+            <ul class="page-links">';
+            echo $page_links;
+            echo '</ul></div></div>';
+        }
+        ?>
     <?php } else { ?>
         <div class="notice notice-danger is-dismissible">
             <p><?php _e('You have not registered anything.', 'SDWPRM'); ?>
