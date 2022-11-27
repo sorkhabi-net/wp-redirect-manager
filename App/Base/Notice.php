@@ -23,6 +23,14 @@ class Notice
                 'message' => __('Redirect rule is not exists. <a href="#" onclick="window.history.go(-1); return false;"><strong>Back</strong></a>', 'SDWPRM'),
                 'type' => 'error',
             ],
+            'rule_created_successfully' => [
+                'message' => __('Redirect rule created successfully.', 'SDWPRM'),
+                'type' => 'success',
+            ],
+            'rule_updated_successfully' => [
+                'message' => __('Redirect rule updated successfully.', 'SDWPRM'),
+                'type' => 'success',
+            ],
         ];
     }
     private static function render($notice)
