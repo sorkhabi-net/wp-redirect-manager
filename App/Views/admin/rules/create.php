@@ -21,8 +21,8 @@ use App\Base\Notice;
                 <th scope="row"><label for="status">Status:</label></th>
                 <td>
                     <select name="status" id="status">
-                        <option value="1">Active</option>
                         <option value="0">Deactive</option>
+                        <option value="1" selected="selected">Active</option>
                     </select>
                 </td>
             </tr>
