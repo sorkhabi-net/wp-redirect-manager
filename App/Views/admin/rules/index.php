@@ -31,7 +31,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                         $rule_status_class = 'rule_status_deactive';
                     } else {
                         $class = '';
-                        $rule_status = __('active');
+                        $rule_status = __('Active');
                         $rule_status_class = 'rule_status_active';
                     }
                 ?>
