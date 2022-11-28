@@ -22,7 +22,7 @@ class Controller
     {
         global $wpdb;
         $this->plugin_slug = 'sdwprm_';
-        $this->plugin_version = '0.4.3';
+        $this->plugin_version = '0.4.5';
         $this->plugin_path = plugin_dir_path(dirname(__FILE__, 2));
         $this->plugin_url = plugin_dir_url(dirname(__FILE__, 2));
         $this->app_path = plugin_dir_path(dirname(__FILE__, 1));
@@ -65,5 +65,21 @@ class Controller
         } else {
             echo 'View file is not exists. "' . $view_file . '"';
         }
+    }
+    public function jsonify ($type, $result)
+    {
+        if ($type == 'redirect'){
+            $result = [
+                'url' => $result
+            ];
+        }else if (!is_array ($result)){
+            $result = [
+                'message' => $result
+            ];
+        }
+        echo json_encode(array_merge ([
+            'type' => $type,
+        ], $result));
+        exit;
     }
 }

@@ -83,7 +83,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
             'total' => ceil($total / $items_per_page),
             'current' => $page
         ]);
-        if ($page_links){
+        if ($page_links) {
             echo '
             <div class="tablenav bottom">
             <div class="tablenav-pages">

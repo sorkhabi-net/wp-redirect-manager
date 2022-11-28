@@ -16,29 +16,30 @@ class Create extends Controller
         global $wpdb;
         // CSRF Check
         if (!(isset($_POST['form_nonce']) && wp_verify_nonce($_POST['form_nonce'], $this->plugin_slug . 'create_rule'))) {
-            _e('Access diened');
-            return;
+            $message = __('Something went wrong. Please refresh page and try again.', 'SDWPRM');
+            $url = $this->route ('rules.create');
+            $url_text = __('Click here');
+            $this->jsonify('nonce', compact ('message', 'url', 'url_text'));
         }
         if (!isset($_POST['uri']) or !isset($_POST['redirect_to']) or !isset($_POST['status'])) {
-            _e('Please enter all required inputs.');
-            return;
+            $this->jsonify('alert', __('Please enter all required inputs.', 'SDWPRM'));
         }
         $uri = trim($_POST['uri']);
         $uri_hash = Helper::hash($uri);
-        $redirect_to = $_POST['redirect_to'];
+        $redirect_to = trim ($_POST['redirect_to']);
         $status = $_POST['status'] == 1 ? 1 : 0;
         if (mb_strlen($uri, 'UTF-8') == 0 or mb_strlen($uri, 'UTF-8') > 255) {
-            _e('Redirect from must be 1 char and under 255 char');
-            return;
+            $this->jsonify('uri_len', __('Redirect from must be 1 char and under 255 char', 'SDWPRM'));
         }
         if (mb_strlen($redirect_to, 'UTF-8') == 0 or mb_strlen($redirect_to, 'UTF-8') > 255) {
-            _e('Redirect to must be 1 char and under 255 char');
-            return;
+            $this->jsonify('redirect_to_len', __('Redirect to must be 1 char and under 255 char', 'SDWPRM'));
         }
         $rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri_hash`='{$uri_hash}' LIMIT 1");
         if ($rule !== null) {
-            _e('Redirect rule is duplicate > edit #' . $rule->id);
-            return;
+            $message = __('Redirect rule is duplicate you can edit old rule.', 'SDWPRM');
+            $url = $this->route ('rules.edit', ['id' => $rule->id]);
+            $url_text = __('Click here');
+            $this->jsonify('duplicate', compact ('message', 'url', 'url_text'));
         }
         $result = $wpdb->insert(
             $this->rules_table_name,
@@ -51,11 +52,10 @@ class Create extends Controller
             ['%s', '%s', '%s', '%d']
         );
         if ($result) {
-            wp_redirect($this->route('rules', ['notice' => 'rule_created_successfully']));
-            exit();
+            $url = $this->route('rules', ['notice' => 'rule_created_successfully']);
+            $this->jsonify('redirect', $url);
         } else {
-            _e('Error while adding data.');
-            return;
+            $this->jsonify('alert', __('Error while adding data.', 'SDWPRM'));
         }
     }
 
