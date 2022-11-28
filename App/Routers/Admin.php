@@ -7,6 +7,7 @@
 namespace App\Routers;
 
 use App\Base\Controller;
+use App\Controllers\Admin\Error404;
 use App\Controllers\Admin\Settings;
 use App\Controllers\Admin\Rules\Index as RulesIndex;
 use App\Controllers\Admin\Rules\Edit as RulesEdit;
@@ -38,6 +39,13 @@ class Admin extends Controller
                     'action' => 'delete',
                     'class' => RulesDelete::class,
                     'methods' => ['post'],
+                ],
+            ],
+            'error_404' => [
+                [
+                    'action' => 'index',
+                    'class' => Error404::class,
+                    'methods' => ['get'],
                 ],
             ],
             'settings' => [
