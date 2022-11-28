@@ -10,7 +10,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
     <div id="nonce" class="alerts"></div>
     <div id="duplicate" class="alerts"></div>
     <div id="alert" class="alerts"></div>
-    <form action="<?php echo $this->route('rules.create'); ?>" method="POST" id="form">
+    <form action="<?php echo $this->route('rules.create'); ?>" method="POST" id="create_rule_form">
         <input name="form_nonce" type="hidden" value="<?= wp_create_nonce($this->plugin_slug . 'create_rule') ?>" />
         <table class="form-table" role="presentation">
             <tr>
@@ -38,52 +38,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
             </tr>
         </table>
         <p class="submit">
-            <button type="submit" id="form_btn" class="button button-primary">Add</button>
+            <button type="submit" id="create_rule_form_btn" class="button button-primary">Add</button>
         </p>
     </form>
 </div>
-<script>
-    var templates = {
-        'nonce': '<div class="notice notice-warning is-dismissible"><p>{message} <a href="{url}">{url_text}</a></p></div>',
-        'duplicate': '<div class="notice notice-warning is-dismissible"><p>{message} <a href="{url}">{url_text}</a></p></div>',
-        'alert': '<div class="notice notice-warning is-dismissible"><p>{message}</p></div>',
-        'uri_len': '<strong class="text-danger">{message}</strong>',
-        'redirect_to_len': '<strong class="text-danger">{message}</strong>',
-    };
-    jQuery(document).ready(function($) {
-        function render_template(data) {
-            template = templates[data.type];
-            for (key in data) {
-                template = template.replace('{' + key + '}', data[key]);
-            };
-            $('#' + data['type']).html(template);
-        }
-        $('#form').submit(function(e) {
-            e.preventDefault();
-            $('#form_btn').attr('disabled', 'disabled');
-            $('.alerts').html('');
-            jQuery.ajax({
-                type: "post",
-                dataType: 'json',
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                success: function(result) {
-                    $('#form_btn').attr('disabled', null);
-                    if (result.type == 'redirect') {
-                        window.location.replace(result.url);
-                        window.location.href = result.url;
-                    } else {
-                        render_template(result);
-                    }
-                },
-                error: function(result, code, error) {
-                    $('#form_btn').attr('disabled', null);
-                    render_template({
-                        'type': 'alert',
-                        'message': 'Something went wrong. Please try again.',
-                    });
-                },
-            });
-        });
-    });
-</script>
