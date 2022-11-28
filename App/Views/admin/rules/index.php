@@ -30,11 +30,11 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 foreach ($rules as $rule) {
                     if ($rule->status == 0) {
                         $class = 'rule_is_deactive';
-                        $rule_status = __('Deactive');
+                        $rule_status = '<span class="dashicons dashicons-no"></span> ' . __('Deactive');
                         $rule_status_class = 'rule_status_deactive';
                     } else {
                         $class = '';
-                        $rule_status = __('Active');
+                        $rule_status = '<span class="dashicons dashicons-yes"></span> ' . __('Active');
                         $rule_status_class = 'rule_status_active';
                     }
                 ?>
