@@ -40,4 +40,38 @@ jQuery(document).ready(function ($) {
             },
         });
     });
+    var edit_rule_templates = {
+        'nonce': '<div class="notice notice-warning is-dismissible"><p>{message} <a href="{url}">{url_text}</a></p></div>',
+        'duplicate': '<div class="notice notice-warning is-dismissible"><p>{message} <a href="{url}">{url_text}</a></p></div>',
+        'alert': '<div class="notice notice-warning is-dismissible"><p>{message}</p></div>',
+        'uri_len': '<strong class="text-danger">{message}</strong>',
+        'redirect_to_len': '<strong class="text-danger">{message}</strong>',
+    };
+    $('#edit_rule_form').submit(function (e) {
+        e.preventDefault();
+        $('#edit_rule_form_btn').attr('disabled', 'disabled');
+        $('.alerts').html('');
+        jQuery.ajax({
+            type: "post",
+            dataType: 'json',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function (result) {
+                $('#edit_rule_form_btn').attr('disabled', null);
+                if (result.type == 'redirect') {
+                    window.location.replace(result.url);
+                    window.location.href = result.url;
+                } else {
+                    render_template(edit_rule_templates, result);
+                }
+            },
+            error: function (result, code, error) {
+                $('#edit_rule_form_btn').attr('disabled', null);
+                render_template(edit_rule_templates, {
+                    'type': 'alert',
+                    'message': 'Something went wrong. Please try again.',
+                });
+            },
+        });
+    });
 });
