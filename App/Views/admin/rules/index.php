@@ -52,7 +52,13 @@ defined('ABSPATH') or die('Access denied!'); ?>
                         <td class="manage-column">
                             <span class="<?php echo $class; ?>" dir="ltr">
                                 <span class="dashicons dashicons-randomize"></span>
-                                <?php echo $rule->redirect_to; ?>
+                                <?php 
+                                if (substr ($rule->redirect_to, 0, 7) != 'http://' and substr ($rule->redirect_to, 0, 8) != 'https://'){
+                                    echo site_url () . '/' . $rule->redirect_to;
+                                }else{
+                                    echo $rule->redirect_to;
+                                }
+                                ?>
                             </span>
                         </td>
                         <td class="manage-column">
