@@ -8,7 +8,10 @@ defined('ABSPATH') or die('Access denied!'); ?>
     <h1>Redirect rules management</h1>
     <?php if ($rules !== null and count($rules) > 0) { ?>
         <p>
-            <a href="<?php echo $this->route('rules.create'); ?>" class="button button-primary"><strong>+ Add new redirect rule</strong></a>
+            <a href="<?php echo $this->route('rules.create'); ?>" class="button button-primary">
+                <span class="dashicons dashicons-plus mt-4"></span>
+                <strong>Add new redirect rule</strong>
+            </a>
         </p>
         <table class="wp-list-table widefat striped">
             <thead>
@@ -43,16 +46,18 @@ defined('ABSPATH') or die('Access denied!'); ?>
                         </td>
                         <td class="manage-column">
                             <span class="<?php echo $class; ?>" dir="ltr">
-                                /<?php echo $rule->uri; ?>
+                                <span class="dashicons dashicons-admin-links"></span> <?php echo site_url() . '/' . $rule->uri; ?>
                             </span>
                         </td>
                         <td class="manage-column">
                             <span class="<?php echo $class; ?>" dir="ltr">
+                                <span class="dashicons dashicons-randomize"></span>
                                 <?php echo $rule->redirect_to; ?>
                             </span>
                         </td>
                         <td class="manage-column">
                             <span class="<?php echo $class; ?>">
+                                <span class="dashicons dashicons-visibility"></span>
                                 <?php echo number_format($rule->view); ?>
                             </span>
                         </td>
@@ -62,13 +67,19 @@ defined('ABSPATH') or die('Access denied!'); ?>
                             </span>
                         </td>
                         <td class="manage-column">
-                            <a href="<?php echo $this->route('rules.edit', ['id' => $rule->id]); ?>" class="button button-scondary">Edit</a>
+                            <a href="<?php echo $this->route('rules.edit', ['id' => $rule->id]); ?>" class="button button-scondary">
+                                <span class="dashicons dashicons-update mt-4"></span>
+                                Edit
+                            </a>
                         </td>
                         <td class="manage-column">
                             <form action="<?php echo $this->route('rules.delete'); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo  $rule->id; ?>">
                                 <input name="form_nonce" type="hidden" value="<?= wp_create_nonce($this->plugin_slug . 'delete_rule') ?>" />
-                                <button type="submit" onclick=" return confirm ('Are you sure delete this item?');" class="button button-link-delete">Delete</button>
+                                <button type="submit" onclick=" return confirm ('Are you sure delete this item?');" class="button button-link-delete">
+                                    <span class="dashicons dashicons-trash mt-4"></span>
+                                    Delete
+                                </button>
                             </form>
                         </td>
                     </tr>

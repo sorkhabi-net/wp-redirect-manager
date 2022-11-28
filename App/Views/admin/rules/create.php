@@ -38,7 +38,10 @@ defined('ABSPATH') or die('Access denied!'); ?>
             </tr>
         </table>
         <p class="submit">
-            <button type="submit" id="create_rule_form_btn" class="button button-primary">Add</button>
+            <button type="submit" id="create_rule_form_btn" class="button button-primary">
+                <span class="dashicons dashicons-plus mt-4"></span>
+                Add
+            </button>
         </p>
     </form>
 </div>

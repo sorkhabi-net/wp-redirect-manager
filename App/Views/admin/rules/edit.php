@@ -38,7 +38,10 @@ defined('ABSPATH') or die('Access denied!'); ?>
             </tr>
         </table>
         <p class="submit">
-            <button type="submit" id="edit_rule_form_btn" class=" button button-primary">Update</button>
+            <button type="submit" id="edit_rule_form_btn" class=" button button-primary">
+                <span class="dashicons dashicons-update mt-4"></span>
+                Update
+            </button>
         </p>
     </form>
 </div>
