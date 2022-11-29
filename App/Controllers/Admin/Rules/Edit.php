@@ -61,6 +61,10 @@ class Edit extends Controller
             ['%s', '%s', '%s', '%d'],
             ['%d']
         );
+        if (isset($_GET['error_404'])) {
+            $error_id = intval($_GET['error_404']);
+            $wpdb->delete($this->error_404_table_name, ['id' => $error_id]);
+        }
         $url = $this->route('rules', ['notice' => 'rule_updated_successfully']);
         $this->jsonify('redirect', $url);
     }
@@ -69,9 +73,10 @@ class Edit extends Controller
     {
         global $wpdb;
         $id = $_GET['id'] ?? 0;
+        $error_id = isset($_GET['error_404']) ? intval($_GET['error_404']) : 0;
         $rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `id`='{$id}' LIMIT 1");
         if ($rule !== null) {
-            $this->admin_view('rules.edit', compact('rule'));
+            $this->admin_view('rules.edit', compact('rule', 'error_id'));
         } else {
             return Notice::show('rule_is_not_exists');
         }

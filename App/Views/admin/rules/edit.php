@@ -10,7 +10,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
     <div id="nonce" class="alerts"></div>
     <div id="duplicate" class="alerts"></div>
     <div id="alert" class="alerts"></div>
-    <form action="<?php echo $this->route('rules.edit', ['id' => $rule->id]); ?>" method="POST" id="edit_rule_form">
+    <form action="<?php echo $this->route('rules.edit', ['id' => $rule->id, 'error_404' => $error_id]); ?>" method="POST" id="edit_rule_form">
         <input name="form_nonce" type="hidden" value="<?= wp_create_nonce($this->plugin_slug . 'edit_rule') ?>" />
         <table class="form-table" role="presentation">
             <tr>

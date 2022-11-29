@@ -34,10 +34,11 @@ class Create extends Controller
         if (mb_strlen($redirect_to, 'UTF-8') == 0 or mb_strlen($redirect_to, 'UTF-8') > 255) {
             $this->jsonify('redirect_to_len', __('Redirect to must be 1 char and under 255 char', 'SDWPRM'));
         }
+        $error_id = isset($_GET['error_404']) ? intval($_GET['error_404']) : 0;
         $rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri_hash`='{$uri_hash}' LIMIT 1");
         if ($rule !== null) {
             $message = __('Redirect rule is duplicate you can edit old rule.', 'SDWPRM');
-            $url = $this->route ('rules.edit', ['id' => $rule->id]);
+            $url = $this->route ('rules.edit', ['id' => $rule->id, 'error_404' => $error_id]);
             $url_text = __('Click here');
             $this->jsonify('duplicate', compact ('message', 'url', 'url_text'));
         }
@@ -52,8 +53,7 @@ class Create extends Controller
             ['%s', '%s', '%s', '%d']
         );
         if ($result) {
-            if (isset ($_POST ['error_id'])){
-                $error_id = intval ($_POST ['error_id']);
+            if ($error_id > 0){
                 $result = $wpdb->delete($this->error_404_table_name, ['id' => $error_id]);
             }
             $url = $this->route('rules', ['notice' => 'rule_created_successfully']);
