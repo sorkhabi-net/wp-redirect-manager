@@ -52,7 +52,7 @@ class Admin extends Controller
                 [
                     'action' => 'index',
                     'class' => Settings::class,
-                    'methods' => ['get'],
+                    'methods' => ['get', 'post'],
                 ],
             ],
         ];

@@ -74,4 +74,36 @@ jQuery(document).ready(function ($) {
             },
         });
     });
+    var settings_templates = {
+        'success': '<div class="notice notice-success is-dismissible"><p>{message}</p></div>',
+        'nonce': '<div class="notice notice-warning is-dismissible"><p>{message} <a href="{url}">{url_text}</a></p></div>',
+        'alert': '<div class="notice notice-warning is-dismissible"><p>{message}</p></div>',
+    };
+    $('#settings_form').submit(function (e) {
+        e.preventDefault();
+        $('#settings_form_btn').attr('disabled', 'disabled');
+        $('.alerts').html('');
+        jQuery.ajax({
+            type: "post",
+            dataType: 'json',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function (result) {
+                $('#settings_form_btn').attr('disabled', null);
+                if (result.type == 'redirect') {
+                    window.location.replace(result.url);
+                    window.location.href = result.url;
+                } else {
+                    render_template(settings_templates, result);
+                }
+            },
+            error: function (result, code, error) {
+                $('#settings_form_btn').attr('disabled', null);
+                render_template(settings_templates, {
+                    'type': 'alert',
+                    'message': 'Something went wrong. Please try again.',
+                });
+            },
+        });
+    });
 });
