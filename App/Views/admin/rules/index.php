@@ -16,8 +16,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
         <table class="wp-list-table widefat striped table-responsive-sm">
             <thead>
                 <tr>
-                    <th class="manage-column d-none-sm"></th>
-                    <th class="manage-column">From</th>
+                    <th class="manage-column">Redirect From</th>
                     <th>Redirect To</th>
                     <th class="d-none-sm">View</th>
                     <th class="d-none-sm">Status</th>
@@ -39,11 +38,6 @@ defined('ABSPATH') or die('Access denied!'); ?>
                     }
                 ?>
                     <tr>
-                        <td class="manage-column d-none-sm">
-                            <span class="<?php echo $class; ?>">
-                                <?php echo $rule->id; ?>
-                            </span>
-                        </td>
                         <td class="manage-column">
                             <span class="<?php echo $class; ?>" dir="ltr">
                                 <span class="dashicons dashicons-admin-links"></span> <?php echo site_url() . '/' . $rule->uri; ?>
