@@ -85,7 +85,10 @@ class Controller
     }
     public function get_setting ($setting_key = null)
     {
-        $settings = unserialize(get_option($this->plugin_slug . 'settings', ''));
+        $settings = unserialize(get_option($this->plugin_slug . 'settings'));
+        if ($settings === false){
+            return [];
+        }
         if ($setting_key === null){
             return $settings;
         }else if (isset ($settings [$setting_key])){
