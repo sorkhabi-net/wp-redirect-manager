@@ -24,7 +24,7 @@ class Notice
                 'type' => 'error',
             ],
             'rule_is_not_exists' => [
-                'message' => __('Redirect rule is not exists. <a href="#" onclick="window.history.go(-1); return false;"><strong>Back</strong></a>', 'SDWPRM'),
+                'message' => __('Redirect rule is not exists.<br/><a class="button button-scondary" href="#" onclick="window.history.go(-1); return false;"><strong>Back</strong></a>', 'SDWPRM'),
                 'type' => 'error',
             ],
             'rule_created_successfully' => [
@@ -36,7 +36,7 @@ class Notice
                 'type' => 'success',
             ],
             'error_404_tracker_disabled' => [
-                'message' => __('Error 404 tracker is disabled.<br/>We recommend that you keep this option enabled. <a href="' . self::controller ()->route ('error_404', ['notice' => 'error_404_tracker_active']) . '">Click here to activate this option</a>', 'SDWPRM'),
+                'message' => __('Error 404 tracker is disabled. We recommend that you keep this option enabled.<br/><a class="button button-scondary" href="' . self::controller ()->route ('error_404', ['notice' => 'error_404_tracker_active']) . '">Click here to activate this option</a>', 'SDWPRM'),
                 'type' => 'warning',
             ],
             'error_404_tracker_active' => [
@@ -44,7 +44,7 @@ class Notice
                 'type' => 'success',
             ],
             'status_disabled' => [
-                'message' => __('Redirect system is disabled.<br/>We recommend that you keep this option enabled. <a href="' . self::controller ()->route ('rules', ['notice' => 'status_active']) . '">Click here to activate this option</a>', 'SDWPRM'),
+                'message' => __('Redirect system is disabled. We recommend that you keep this option enabled.<br/><a class="button button-scondary" href="' . self::controller ()->route ('rules', ['notice' => 'status_active']) . '">Click here to activate this option</a>', 'SDWPRM'),
                 'type' => 'warning',
             ],
             'status_active' => [
