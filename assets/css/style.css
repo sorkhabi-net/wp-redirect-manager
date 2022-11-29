@@ -47,3 +47,10 @@
         display: block;
     }
 }
+.d-none {
+    display: none;
+}
+#redirect_to_is_local {
+    color: #2271b1;
+    display: none;
+}

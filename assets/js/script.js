@@ -13,6 +13,33 @@ jQuery(document).ready(function ($) {
         'uri_len': '<strong class="text-danger">{message}</strong>',
         'redirect_to_len': '<strong class="text-danger">{message}</strong>',
     };
+    // Create/Edit rule validation
+    if ($('#create_rule_form').length > 0 || $('#edit_rule_form').length > 0){
+        $('#redirect_to_is_local').hide();
+        $('#redirect_to').on('keyup', function (){
+            redirect_to = $('#redirect_to').val();
+            if (redirect_to.substr(0, 7) != 'http://' && redirect_to.substr(0, 8) != 'https://'){
+                $('#redirect_to_is_local').show ();
+                local_url = $('#redirect_to_local').attr ('data-site-url');
+                if (redirect_to.substr(0, 1) != '/') {
+                    local_url += '/';
+                }
+                local_url += redirect_to;
+                $('#redirect_to_local').text (local_url);
+                example_url = '';
+                if (redirect_to.substr(0, 1) == '/') {
+                    example_url = 'https:/';
+                }else{
+                    example_url = 'https://';
+                }
+                example_url += redirect_to;
+                $('#redirect_to_example').text(example_url);
+            }else{
+                $('#redirect_to_is_local').hide ();
+            }
+        });
+    }
+    // Create new rute submit
     $('#create_rule_form').submit(function (e) {
         e.preventDefault();
         $('#create_rule_form_btn').attr('disabled', 'disabled');

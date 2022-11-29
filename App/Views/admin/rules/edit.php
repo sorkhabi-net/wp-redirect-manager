@@ -25,6 +25,17 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 <td>
                     <input name="redirect_to" type="text" id="redirect_to" value="<?php echo $rule->redirect_to; ?>" class="regular-text" placeholder="https://site.com/" required="required" />
                     <p class="description alerts" id="redirect_to_len"></p>
+                    <div class="description alerts" id="redirect_to_is_local">
+                        <p>
+                            It seems that the entered address is not correct and refers to the internal route.
+                            <br />
+                            This address is interpreted as: <strong id="redirect_to_local" data-site-url="<?php echo site_url(); ?>"></strong>
+                            <br />
+                            If this address is not an internal address, you must put <strong>http://</strong> or <strong>https://</strong> at the beginning of it.
+                            <br />
+                            For example: <strong id="redirect_to_example"></strong>
+                        </p>
+                    </div>
                 </td>
             </tr>
             <tr>
