@@ -12,7 +12,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 <tr>
                     <th class="manage-column">Url</th>
                     <th class="d-none-sm">View</th>
-                    <th class="d-blockize-sm">Last View at</th>
+                    <th class="d-none-sm">Last View at</th>
                     <th class="d-blockize-sm">Fix</th>
                 </tr>
             </thead>
@@ -40,7 +40,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                         <td class="manage-column d-blockize-sm">
                             <a href="<?php echo $this->route('rules.create', ['error_404' => $error->id]); ?>" class="button button-scondary">
                                 <span class="dashicons dashicons-yes mt-4"></span>
-                                Fix
+                                Fix Error
                             </a>
                         </td>
                     </tr>
