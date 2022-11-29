@@ -24,8 +24,8 @@ class AdminMenuPage extends Controller
                         'show_in_settings' => true,
                     ],
                     [
-                        'page_title' => __('404 Tracker', 'SDWPRM'),
-                        'menu_title' => __('404 Tracker', 'SDWPRM'),
+                        'page_title' => __('Error 404 Tracker', 'SDWPRM'),
+                        'menu_title' => __('Error 404 Tracker', 'SDWPRM'),
                         'capability' => 'manage_options',
                         'menu_slug' => 'error_404',
                         'show_in_settings' => true,
