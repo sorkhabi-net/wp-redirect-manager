@@ -13,7 +13,9 @@ class Error404 extends Controller
     public function index()
     {
         global $wpdb;
-
+        if (isset($_GET['notice']) and $_GET['notice'] == 'error_404_tracker_active') {
+            $this->update_setting('error_404', 1);
+        }
         $items_per_page = 10;
         $page = isset($_GET['cpage']) ? intval($_GET['cpage']) : 1;
         $offset = ($page * $items_per_page) - $items_per_page;

@@ -8,6 +8,10 @@ namespace App\Base;
 
 class Notice
 {
+    private static function controller ()
+    {
+        return (new Controller);
+    }
     private static function notices()
     {
         return [
@@ -29,6 +33,22 @@ class Notice
             ],
             'rule_updated_successfully' => [
                 'message' => __('Redirect rule updated successfully.', 'SDWPRM'),
+                'type' => 'success',
+            ],
+            'error_404_tracker_disabled' => [
+                'message' => __('Error 404 tracker is disabled.<br/>We recommend that you keep this option enabled. <a href="' . self::controller ()->route ('error_404', ['notice' => 'error_404_tracker_active']) . '">Click here to activate this option</a>', 'SDWPRM'),
+                'type' => 'warning',
+            ],
+            'error_404_tracker_active' => [
+                'message' => __('Error 404 tracker enabled.', 'SDWPRM'),
+                'type' => 'success',
+            ],
+            'status_disabled' => [
+                'message' => __('Redirect system is disabled.<br/>We recommend that you keep this option enabled. <a href="' . self::controller ()->route ('rules', ['notice' => 'status_active']) . '">Click here to activate this option</a>', 'SDWPRM'),
+                'type' => 'warning',
+            ],
+            'status_active' => [
+                'message' => __('Redirect system enabled.', 'SDWPRM'),
                 'type' => 'success',
             ],
         ];

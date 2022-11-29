@@ -4,8 +4,13 @@ use App\Base\Notice;
 
 defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">
-    <?php Notice::show(); ?>
     <h1>Redirect rules management</h1>
+    <?php Notice::show(); ?>
+    <?php
+    if (!$this->get_setting('status')) {
+        Notice::show('status_disabled');
+    }
+    ?>
     <?php if ($rules !== null and count($rules) > 0) { ?>
         <p>
             <a href="<?php echo $this->route('rules.create'); ?>" class="button button-primary">
