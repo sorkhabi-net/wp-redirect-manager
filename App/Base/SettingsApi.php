@@ -23,6 +23,9 @@ class SettingsApi extends controller
     {
         foreach ($this->admin_pages as $page) {
             $callback = [new Router(), 'run'];
+            if (isset ($page ['notification']) and $page ['notification'] > 0){
+                $page['menu_title'] = $page['menu_title'] . ' <span class="awaiting-mod">' . $page ['notification'] . '</span>';
+            }
             $hook = add_menu_page(
                 $page['page_title'],
                 $page['menu_title'],
@@ -43,8 +46,13 @@ class SettingsApi extends controller
     {
         foreach ($page['sub_pages'] as $sub_page) {
             $parent_slug = $this->plugin_slug . $page['menu_slug'];
-            if (count($sub_page) == 1 or count($sub_page) == 2) {
-                $sub_menu = $page;
+            if (count($sub_page) <= 3) {
+                if (isset ($sub_page['notification']) and $sub_page['notification'] == 0){
+                    $sub_menu = $page;
+                    $sub_menu ['notification'] = 0;
+                }else{
+                    $sub_menu = $page;
+                }
                 $sub_menu['menu_title'] = $sub_page['menu_title'];
                 $callback = null;
             } else {
@@ -53,6 +61,9 @@ class SettingsApi extends controller
                     $parent_slug = null;
                 }
                 $callback = [new Router(), 'run'];
+            }
+            if (isset($sub_menu ['notification']) and $sub_menu ['notification'] > 0) {
+                $sub_menu ['menu_title'] = $sub_menu ['menu_title'] . ' <span class="awaiting-mod">' . $sub_menu['notification'] . '</span>';
             }
             $hook = add_submenu_page(
                 $parent_slug,

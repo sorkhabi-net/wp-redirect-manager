@@ -10,6 +10,8 @@ class AdminMenuPage extends Controller
 {
     private function pages ()
     {
+        global $wpdb;
+        $error_count = $wpdb->get_var("SELECT COUNT(*) FROM `$this->error_404_table_name`");
         return [
             [
                 'page_title' => __('WP Redirect Manager > Rules', 'SDWPRM'),
@@ -18,10 +20,12 @@ class AdminMenuPage extends Controller
                 'menu_slug' => 'rules',
                 'icon_url' => 'dashicons-randomize',
                 'position' => 75,
+                'notification' => $error_count,
                 'sub_pages' => [
                     [
                         'menu_title' => __('Redirect rules', 'SDWPRM'),
                         'show_in_settings' => true,
+                        'notification' => 0,
                     ],
                     [
                         'page_title' => __('Error 404 Tracker', 'SDWPRM'),
@@ -29,6 +33,7 @@ class AdminMenuPage extends Controller
                         'capability' => 'manage_options',
                         'menu_slug' => 'error_404',
                         'show_in_settings' => true,
+                        'notification' => $error_count,
                     ],
                     [
                         'page_title' => __('WP Redirect Manager Settings', 'SDWPRM'),
