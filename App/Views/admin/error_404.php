@@ -5,7 +5,7 @@ use App\Base\Notice;
 defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">
     <?php Notice::show(); ?>
-    <h1>404 Error Tracker</h1>
+    <h1>Error 404 Tracker</h1>
     <?php if ($errors !== null and count($errors) > 0) { ?>
         <table class="wp-list-table widefat striped table-responsive-sm">
             <thead>
