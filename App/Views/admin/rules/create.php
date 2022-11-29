@@ -12,6 +12,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
     <div id="alert" class="alerts"></div>
     <form action="<?php echo $this->route('rules.create'); ?>" method="POST" id="create_rule_form">
         <input name="form_nonce" type="hidden" value="<?= wp_create_nonce($this->plugin_slug . 'create_rule') ?>" />
+        <input name="error_id" type="hidden" value="<?php echo $error_id; ?>" />
         <table class="form-table" role="presentation">
             <tr>
                 <th scope="row"><label for="uri">Redirect from:</label></th>

@@ -52,6 +52,10 @@ class Create extends Controller
             ['%s', '%s', '%s', '%d']
         );
         if ($result) {
+            if (isset ($_POST ['error_id'])){
+                $error_id = intval ($_POST ['error_id']);
+                $result = $wpdb->delete($this->error_404_table_name, ['id' => $error_id]);
+            }
             $url = $this->route('rules', ['notice' => 'rule_created_successfully']);
             $this->jsonify('redirect', $url);
         } else {
@@ -63,6 +67,7 @@ class Create extends Controller
     {
         global $wpdb;
         $uri = '';
+        $error_id = 0;
         if (isset ($_GET ['error_404'])){
             $error_id = intval ($_GET ['error_404']);
             $error = $wpdb->get_row("SELECT * FROM `{$this->error_404_table_name}` WHERE `id`='{$error_id}' LIMIT 1");
@@ -70,6 +75,6 @@ class Create extends Controller
                 $uri = $error->uri;
             }
         }
-        $this->admin_view('rules.create', compact ('uri'));
+        $this->admin_view('rules.create', compact ('error_id', 'uri'));
     }
 }
