@@ -15,7 +15,7 @@ class Error404Tracker extends Controller
     public function handle()
     {
         global $wpdb;
-        if (!get_option($this->plugin_slug . 'error_404')) {
+        if (!$this->get_setting ('error_404')) {
             return;
         }
         if (!is_404()) {

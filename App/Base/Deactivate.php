@@ -10,6 +10,7 @@ class Deactivate extends Controller
 {
     public function run()
     {
-        update_option($this->plugin_slug . 'status', 0);
+        $this->update_setting('status', 1);
+        $this->update_setting('error_404', 1);
     }
 }

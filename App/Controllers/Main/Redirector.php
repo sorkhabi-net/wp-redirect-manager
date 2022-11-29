@@ -15,7 +15,7 @@ class Redirector extends Controller
     public function run()
     {
         global $wpdb;
-        if (!get_option($this->plugin_slug . 'status')){
+        if (!$this->get_setting('status')) {
             return;
         }
         $wp_uri = home_url ();

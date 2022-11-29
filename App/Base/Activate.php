@@ -48,9 +48,8 @@ class Activate extends Controller
 
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($sql);
-
-        update_option($this->plugin_slug . 'status', 1);
-        update_option($this->plugin_slug . 'error_404', 1);
+        $this->update_setting('status', 1);
+        $this->update_setting('error_404', 1);
     }
     public function run()
     {

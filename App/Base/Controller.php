@@ -83,4 +83,20 @@ class Controller
         ], $result));
         exit;
     }
+    public function get_setting ($setting_key = null)
+    {
+        $settings = unserialize(get_option($this->plugin_slug . 'settings', ''));
+        if ($setting_key === null){
+            return $settings;
+        }else if (isset ($settings [$setting_key])){
+            return $settings [$setting_key];
+        }
+    }
+    public function update_setting($setting_key, $setting_value)
+    {
+        $settings = $this->get_setting ();
+        $settings [$setting_key] = $setting_value;
+        $settings = serialize ($settings);
+        update_option ($this->plugin_slug . 'settings', $settings);
+    }
 }
