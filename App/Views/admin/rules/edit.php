@@ -25,7 +25,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 <td>
                     <input name="redirect_to" type="text" id="redirect_to" value="<?php echo $rule->redirect_to; ?>" class="regular-text" placeholder="https://site.com/" required="required" />
                     <p class="description alerts" id="redirect_to_len"></p>
-                    <div class="description alerts" id="redirect_to_is_local">
+                    <div class="description hideable-alerts" id="redirect_to_is_local">
                         <p>
                             It seems that the entered address is not correct and refers to the internal route.
                             <br />

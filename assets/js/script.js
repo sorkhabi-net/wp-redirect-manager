@@ -44,6 +44,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         $('#create_rule_form_btn').attr('disabled', 'disabled');
         $('.alerts').html('');
+        $('.hideable-alerts').hide ();
         jQuery.ajax({
             type: "post",
             dataType: 'json',
@@ -78,6 +79,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         $('#edit_rule_form_btn').attr('disabled', 'disabled');
         $('.alerts').html('');
+        $('.hideable-alerts').hide();
         jQuery.ajax({
             type: "post",
             dataType: 'json',
