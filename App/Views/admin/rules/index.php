@@ -13,16 +13,16 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 <strong>Add new redirect rule</strong>
             </a>
         </p>
-        <table class="wp-list-table widefat striped">
+        <table class="wp-list-table widefat striped table-responsive-sm">
             <thead>
                 <tr>
-                    <th class="manage-column column-cb check-column"></th>
+                    <th class="manage-column d-none-sm"></th>
                     <th class="manage-column">From</th>
                     <th>Redirect To</th>
-                    <th>View</th>
-                    <th>Status</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th class="d-none-sm">View</th>
+                    <th class="d-none-sm">Status</th>
+                    <th class="d-blockize-sm">Edit</th>
+                    <th class="d-blockize-sm">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,7 +39,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                     }
                 ?>
                     <tr>
-                        <td class="manage-column">
+                        <td class="manage-column d-none-sm">
                             <span class="<?php echo $class; ?>">
                                 <?php echo $rule->id; ?>
                             </span>
@@ -52,33 +52,33 @@ defined('ABSPATH') or die('Access denied!'); ?>
                         <td class="manage-column">
                             <span class="<?php echo $class; ?>" dir="ltr">
                                 <span class="dashicons dashicons-randomize"></span>
-                                <?php 
-                                if (substr ($rule->redirect_to, 0, 7) != 'http://' and substr ($rule->redirect_to, 0, 8) != 'https://'){
-                                    echo site_url () . '/' . $rule->redirect_to;
-                                }else{
+                                <?php
+                                if (substr($rule->redirect_to, 0, 7) != 'http://' and substr($rule->redirect_to, 0, 8) != 'https://') {
+                                    echo site_url() . '/' . $rule->redirect_to;
+                                } else {
                                     echo $rule->redirect_to;
                                 }
                                 ?>
                             </span>
                         </td>
-                        <td class="manage-column">
+                        <td class="manage-column d-none-sm">
                             <span class="<?php echo $class; ?>">
                                 <span class="dashicons dashicons-visibility"></span>
                                 <?php echo number_format($rule->view); ?>
                             </span>
                         </td>
-                        <td class="manage-column">
+                        <td class="manage-column d-none-sm">
                             <span class="<?php echo $rule_status_class; ?>">
                                 <?php echo $rule_status; ?>
                             </span>
                         </td>
-                        <td class="manage-column">
+                        <td class="manage-column d-blockize-sm">
                             <a href="<?php echo $this->route('rules.edit', ['id' => $rule->id]); ?>" class="button button-scondary">
                                 <span class="dashicons dashicons-update mt-4"></span>
                                 Edit
                             </a>
                         </td>
-                        <td class="manage-column">
+                        <td class="manage-column d-blockize-sm">
                             <form action="<?php echo $this->route('rules.delete'); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo  $rule->id; ?>">
                                 <input name="form_nonce" type="hidden" value="<?= wp_create_nonce($this->plugin_slug . 'delete_rule') ?>" />
