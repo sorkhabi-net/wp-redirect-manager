@@ -16,7 +16,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
             <tr>
                 <th scope="row"><label for="uri">Redirect from:</label></th>
                 <td>
-                    <?php echo site_url(); ?>/<input name="uri" type="text" id="uri" value="" class="regular-text" required="required" />
+                    <?php echo site_url(); ?>/<input name="uri" type="text" id="uri" value="<?php echo $uri; ?>" class="regular-text" required="required" />
                     <p class="description alerts" id="uri_len"></p>
                 </td>
             </tr>

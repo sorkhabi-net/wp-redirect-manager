@@ -31,6 +31,7 @@ class Controller
         $this->admin_view_path = $this->view_path . 'admin/';
         $this->system_view_path = $this->view_path . 'system/';
         $this->rules_table_name = $wpdb->prefix . $this->plugin_slug . 'rules';
+        $this->error_404_table_name = $wpdb->prefix . $this->plugin_slug . 'error_404';
     }
     public function route ($route_name, $params = null)
     {

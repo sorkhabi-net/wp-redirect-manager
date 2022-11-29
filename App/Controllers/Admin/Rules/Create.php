@@ -61,6 +61,15 @@ class Create extends Controller
 
     public function index()
     {
-        $this->admin_view('rules.create');
+        global $wpdb;
+        $uri = '';
+        if (isset ($_GET ['error_404'])){
+            $error_id = intval ($_GET ['error_404']);
+            $error = $wpdb->get_row("SELECT * FROM `{$this->error_404_table_name}` WHERE `id`='{$error_id}' LIMIT 1");
+            if ($error !== null) {
+                $uri = $error->uri;
+            }
+        }
+        $this->admin_view('rules.create', compact ('uri'));
     }
 }

@@ -14,6 +14,7 @@ use App\Base\Controller;
         return [
             Base\AdminMenuPage::class,
             Controllers\Main\Redirector::class,
+            Controllers\Main\Error404Tracker::class,
         ];
     }
 
