@@ -34,7 +34,6 @@ class Settings extends Controller
     }
     public function index()
     {
-        $settings = $this->get_setting ();
-        $this->admin_view('settings', compact ('settings'));
+        $this->admin_view('settings');
     }
 }

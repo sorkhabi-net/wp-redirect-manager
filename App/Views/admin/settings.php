@@ -18,7 +18,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 <td>
                     <select name="status" id="status">
                         <option value="0">Deactive</option>
-                        <option value="1" <?php echo ($settings ['status'] ? ' selected="selected"' : ''); ?>>Active</option>
+                        <option value="1" <?php echo ($this->get_setting ('status') ? ' selected="selected"' : ''); ?>>Active</option>
                     </select>
                 </td>
             </tr>
@@ -27,7 +27,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 <td>
                     <select name="error_404" id="error_404">
                         <option value="0">Deactive</option>
-                        <option value="1" <?php echo ($settings ['error_404'] ? ' selected="selected"' : ''); ?>>Active</option>
+                        <option value="1" <?php echo ($this->get_setting ('error_404') ? ' selected="selected"' : ''); ?>>Active</option>
                     </select>
                 </td>
             </tr>
