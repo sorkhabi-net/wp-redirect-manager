@@ -20,12 +20,11 @@ class Activate extends Controller
             CREATE TABLE IF NOT EXISTS `{$rules_table_name}` (
             `id` int NOT NULL AUTO_INCREMENT,
             `uri` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-            `uri_hash` varchar(42) COLLATE utf8mb4_bin NOT NULL,
             `redirect_to` varchar(255) COLLATE utf8mb4_bin NOT NULL,
             `status` tinyint NOT NULL,
             `view` int NOT NULL,
             PRIMARY KEY (`id`),
-            KEY `uri_hash` (`uri_hash`),
+            KEY `uri` (`uri`),
             KEY `status` (`status`)
             ) {$charset_collate};
         ";

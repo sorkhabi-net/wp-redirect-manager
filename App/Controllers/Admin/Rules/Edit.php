@@ -31,7 +31,6 @@ class Edit extends Controller
             $this->jsonify('alert', __('Redirect rule is not exists.', 'SDWPRM'));
         }
         $uri = trim($_POST['uri']);
-        $uri_hash = Helper::hash($uri);
         $redirect_to = trim($_POST['redirect_to']);
         $status = $_POST['status'] == 1 ? 1 : 0;
         if (mb_strlen($uri, 'UTF-8') == 0 or mb_strlen($uri, 'UTF-8') > 255) {
@@ -40,7 +39,7 @@ class Edit extends Controller
         if (mb_strlen($redirect_to, 'UTF-8') == 0 or mb_strlen($redirect_to, 'UTF-8') > 255) {
             $this->jsonify('redirect_to_len', __('Redirect to must be 1 char and under 255 char', 'SDWPRM'));
         }
-        $other_rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri_hash`='{$uri_hash}' and `id`!='{$id}' LIMIT 1");
+        $other_rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri`='{$uri}' and `id`!='{$id}' LIMIT 1");
         if ($other_rule !== null) {
             $message = __('Redirect rule is duplicate you can edit old rule.', 'SDWPRM');
             $url = $this->route('rules.edit', ['id' => $rule->id]);
@@ -51,14 +50,13 @@ class Edit extends Controller
             $this->rules_table_name,
             [
                 'uri' => $uri,
-                'uri_hash' => $uri_hash,
                 'redirect_to' => $redirect_to,
                 'status' => $status,
             ],
             [
                 'id' => $rule->id,
             ],
-            ['%s', '%s', '%s', '%d'],
+            ['%s', '%s', '%d'],
             ['%d']
         );
         if (isset($_GET['error_404'])) {

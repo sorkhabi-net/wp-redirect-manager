@@ -25,7 +25,6 @@ class Create extends Controller
             $this->jsonify('alert', __('Please enter all required inputs.', 'SDWPRM'));
         }
         $uri = trim($_POST['uri']);
-        $uri_hash = Helper::hash($uri);
         $redirect_to = trim ($_POST['redirect_to']);
         $status = $_POST['status'] == 1 ? 1 : 0;
         if (mb_strlen($uri, 'UTF-8') == 0 or mb_strlen($uri, 'UTF-8') > 255) {
@@ -35,7 +34,7 @@ class Create extends Controller
             $this->jsonify('redirect_to_len', __('Redirect to must be 1 char and under 255 char', 'SDWPRM'));
         }
         $error_id = isset($_GET['error_404']) ? intval($_GET['error_404']) : 0;
-        $rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri_hash`='{$uri_hash}' LIMIT 1");
+        $rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri`='{$uri}' LIMIT 1");
         if ($rule !== null) {
             $message = __('Redirect rule is duplicate you can edit old rule.', 'SDWPRM');
             $url = $this->route ('rules.edit', ['id' => $rule->id, 'error_404' => $error_id]);
@@ -46,11 +45,10 @@ class Create extends Controller
             $this->rules_table_name,
             [
                 'uri' => $uri,
-                'uri_hash' => $uri_hash,
                 'redirect_to' => $redirect_to,
                 'status' => $status,
             ],
-            ['%s', '%s', '%s', '%d']
+            ['%s', '%s', '%d']
         );
         if ($result) {
             if ($error_id > 0){
