@@ -25,6 +25,9 @@ class Create extends Controller
             $this->jsonify('alert', __('Please enter all required inputs.', 'SDWPRM'));
         }
         $uri = trim($_POST['uri']);
+        if (mb_strlen($uri, 'UTF-8') != 1 and mb_substr ($uri, 0, 1, 'UTF-8') == '/'){
+            $uri = mb_substr($uri, 1, null, 'UTF-8');
+        }
         $redirect_to = trim ($_POST['redirect_to']);
         $status = $_POST['status'] == 1 ? 1 : 0;
         $http_status_code = intval ($_POST ['http_status_code']);

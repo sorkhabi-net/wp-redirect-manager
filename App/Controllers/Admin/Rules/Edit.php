@@ -31,6 +31,9 @@ class Edit extends Controller
             $this->jsonify('alert', __('Redirect rule is not exists.', 'SDWPRM'));
         }
         $uri = trim($_POST['uri']);
+        if (mb_strlen($uri, 'UTF-8') != 1 and mb_substr($uri, 0, 1, 'UTF-8') == '/') {
+            $uri = mb_substr($uri, 1, null, 'UTF-8');
+        }
         $redirect_to = trim($_POST['redirect_to']);
         $status = $_POST['status'] == 1 ? 1 : 0;
         $http_status_code = intval($_POST['http_status_code']);
@@ -47,7 +50,7 @@ class Edit extends Controller
         $other_rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri`='{$uri}' and `id`!='{$id}' LIMIT 1");
         if ($other_rule !== null) {
             $message = __('Redirect rule is duplicate you can edit old rule.', 'SDWPRM');
-            $url = $this->route('rules.edit', ['id' => $rule->id]);
+            $url = $this->route('rules.edit', ['id' => $other_rule->id]);
             $url_text = __('Click here');
             $this->jsonify('duplicate', compact('message', 'url', 'url_text'));
         }
