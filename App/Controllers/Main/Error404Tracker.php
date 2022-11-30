@@ -57,6 +57,9 @@ class Error404Tracker extends Controller
             $uri = mb_substr($uri, $wp_uri_len, null, 'UTF-8');
         }
 
+        $uri = urldecode($uri);
+        
+
         $uri_hash = Helper::hash($uri);
 
         $error = $wpdb->get_row("SELECT * FROM `{$this->error_404_table_name}` WHERE `uri_hash`='{$uri_hash}' LIMIT 1");

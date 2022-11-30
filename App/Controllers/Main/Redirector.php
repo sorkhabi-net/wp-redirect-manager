@@ -54,6 +54,8 @@ class Redirector extends Controller
             $uri = mb_substr($uri, $wp_uri_len, null, 'UTF-8');
         }
 
+        $uri = urldecode($uri);
+
         $rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri`='{$uri}' and `status`='1' LIMIT 1");
 
         if ($rule !== null){
