@@ -52,9 +52,9 @@ defined('ABSPATH') or die('Access denied!'); ?>
                             <span class="<?php echo $class; ?>" dir="ltr">
                                 <span class="dashicons dashicons-randomize"></span>
                                 <?php
-                                if (substr($rule->redirect_to, 0, 7) != 'http://' and substr($rule->redirect_to, 0, 8) != 'https://') {
+                                if (mb_substr($rule->redirect_to, 0, 7, 'UTF-8') != 'http://' and mb_substr($rule->redirect_to, 0, 8, 'UTF-8') != 'https://') {
                                     $redirect_to = site_url();
-                                    if (substr ($rule->redirect_to, 0, 1) != '/'){
+                                    if (mb_substr($rule->redirect_to, 0, 1, 'UTF-8') != '/') {
                                         $redirect_to .= '/';
                                     }
                                     $redirect_to .= $rule->redirect_to;
