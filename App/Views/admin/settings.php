@@ -1,5 +1,6 @@
 <?php
 
+use App\Base\Helper;
 use App\Base\Notice;
 
 defined('ABSPATH') or die('Access denied!'); ?>
@@ -18,7 +19,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 <td>
                     <select name="status" id="status">
                         <option value="0">Deactive</option>
-                        <option value="1" <?php echo ($this->get_setting ('status') ? ' selected="selected"' : ''); ?>>Active</option>
+                        <option value="1" <?php echo ($this->get_setting('status') ? ' selected="selected"' : ''); ?>>Active</option>
                     </select>
                 </td>
             </tr>
@@ -27,8 +28,29 @@ defined('ABSPATH') or die('Access denied!'); ?>
                 <td>
                     <select name="error_404" id="error_404">
                         <option value="0">Deactive</option>
-                        <option value="1" <?php echo ($this->get_setting ('error_404') ? ' selected="selected"' : ''); ?>>Active</option>
+                        <option value="1" <?php echo ($this->get_setting('error_404') ? ' selected="selected"' : ''); ?>>Active</option>
                     </select>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"><label for="http_status_code">Default http status code:</label></th>
+                <td>
+                    <select name="http_status_code" id="http_status_code">
+                        <?php
+                        $statusList = Helper::http_status_code();
+                        unset($statusList[0]);
+                        $default_http_status_code = $this->get_setting('http_status_code');
+                        foreach ($statusList as $status_code => $status) {
+                            if ($status_code == $default_http_status_code) {
+                                $selected = true;
+                            } else {
+                                $selected = false;
+                            }
+                            echo '<option value="' . $status_code . '"' . ($selected ? ' selected="selected"' : '') . '>' . $status . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <p class="description alerts" id="http_status_code_error"></p>
                 </td>
             </tr>
         </table>

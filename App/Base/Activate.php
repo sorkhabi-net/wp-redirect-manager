@@ -17,10 +17,11 @@ class Activate extends Controller
         // Rules table
         $rules_table_name = $this->rules_table_name;
         $sql = "
-            CREATE TABLE IF NOT EXISTS `{$rules_table_name}` (
+            CREATE TABLE `{$rules_table_name}` (
             `id` int NOT NULL AUTO_INCREMENT,
             `uri` varchar(255) COLLATE utf8mb4_bin NOT NULL,
             `redirect_to` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+            `http_status_code` int NOT NULL,
             `status` tinyint NOT NULL,
             `view` int NOT NULL,
             PRIMARY KEY (`id`),
@@ -32,7 +33,7 @@ class Activate extends Controller
         // Error 404 table
         $error_404_table_name = $this->error_404_table_name;
         $sql .= "
-            CREATE TABLE IF NOT EXISTS `{$error_404_table_name}` (
+            CREATE TABLE `{$error_404_table_name}` (
             `id` int NOT NULL AUTO_INCREMENT,
             `uri` varchar(255) COLLATE utf8mb4_bin NOT NULL,
             `uri_hash` varchar(42) COLLATE utf8mb4_bin NOT NULL,
@@ -44,11 +45,15 @@ class Activate extends Controller
             ) {$charset_collate};
         ";
 
-
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($sql);
+        
+        $this->update_setting('system_status', 1);
         $this->update_setting('status', 1);
         $this->update_setting('error_404', 1);
+        if ($this->get_setting ('http_status_code') === null){
+            $this->update_setting('http_status_code', 301);
+        }
     }
     public function run()
     {

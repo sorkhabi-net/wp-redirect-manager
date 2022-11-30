@@ -11,7 +11,11 @@ class AdminMenuPage extends Controller
     private function pages ()
     {
         global $wpdb;
-        $error_count = $wpdb->get_var("SELECT COUNT(*) FROM `$this->error_404_table_name`");
+        if ($this->get_setting('system_status')){
+            $error_count = $wpdb->get_var("SELECT COUNT(*) FROM `$this->error_404_table_name`");
+        }else{
+            $error_count = 0;
+        }
         return [
             [
                 'page_title' => __('WP Redirect Manager > Rules', 'SDWPRM'),

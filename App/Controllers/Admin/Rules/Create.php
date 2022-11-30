@@ -21,12 +21,17 @@ class Create extends Controller
             $url_text = __('Click here');
             $this->jsonify('nonce', compact ('message', 'url', 'url_text'));
         }
-        if (!isset($_POST['uri']) or !isset($_POST['redirect_to']) or !isset($_POST['status'])) {
+        if (!isset($_POST['uri']) or !isset($_POST['redirect_to']) or !isset($_POST['status']) or !isset ($_POST ['http_status_code'])) {
             $this->jsonify('alert', __('Please enter all required inputs.', 'SDWPRM'));
         }
         $uri = trim($_POST['uri']);
         $redirect_to = trim ($_POST['redirect_to']);
         $status = $_POST['status'] == 1 ? 1 : 0;
+        $http_status_code = intval ($_POST ['http_status_code']);
+        $statusList = Helper::http_status_code();
+        if (in_array($_POST['http_status_code'], array_keys($statusList)) === false) {
+            $this->jsonify('http_status_code_error', __('http status code is not valid.', 'SDWPRM'));
+        }
         if (mb_strlen($uri, 'UTF-8') == 0 or mb_strlen($uri, 'UTF-8') > 255) {
             $this->jsonify('uri_len', __('Redirect from must be 1 char and under 255 char', 'SDWPRM'));
         }
@@ -46,9 +51,10 @@ class Create extends Controller
             [
                 'uri' => $uri,
                 'redirect_to' => $redirect_to,
+                'http_status_code' => $http_status_code,
                 'status' => $status,
             ],
-            ['%s', '%s', '%d']
+            ['%s','%s', '%d', '%d']
         );
         if ($result) {
             if ($error_id > 0){

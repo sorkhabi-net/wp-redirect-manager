@@ -59,10 +59,15 @@ class Redirector extends Controller
         if ($rule !== null){
             // Update view count
             $wpdb->query("UPDATE `{$this->rules_table_name}` SET `view` = `view`+1 WHERE `id`='{$rule->id}' LIMIT 1");
+            // Get http status code
+            $http_status_code = $rule->http_status_code;
+            if ($http_status_code == 0){
+                $http_status_code = $this->get_setting('http_status_code');
+            }
             // Redirect
             $r = 'Location: ' . $rule->redirect_to;
             // TODO: Add Http status code
-            header ($r);
+            header ($r, true, $http_status_code);
             exit;
         }
     }

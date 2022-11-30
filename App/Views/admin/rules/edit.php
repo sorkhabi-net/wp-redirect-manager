@@ -1,6 +1,7 @@
 <?php
 
 use App\Base\Notice;
+use App\Base\Helper;
 
 defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">
@@ -36,6 +37,25 @@ defined('ABSPATH') or die('Access denied!'); ?>
                             For example: <strong id="redirect_to_example"></strong>
                         </p>
                     </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"><label for="http_status_code">http status code:</label></th>
+                <td>
+                    <select name="http_status_code" id="http_status_code">
+                        <?php
+                        $statusList = Helper::http_status_code();
+                        foreach ($statusList as $status_code => $status) {
+                            if ($status_code == $rule->http_status_code) {
+                                $selected = true;
+                            } else {
+                                $selected = false;
+                            }
+                            echo '<option value="' . $status_code . '"' . ($selected ? ' selected="selected"' : '') . '>' . $status . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <p class="description alerts" id="http_status_code_error"></p>
                 </td>
             </tr>
             <tr>

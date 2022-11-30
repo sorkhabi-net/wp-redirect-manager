@@ -12,6 +12,7 @@ jQuery(document).ready(function ($) {
         'alert': '<div class="notice notice-warning is-dismissible"><p>{message}</p></div>',
         'uri_len': '<strong class="text-danger">{message}</strong>',
         'redirect_to_len': '<strong class="text-danger">{message}</strong>',
+        'http_status_code_error': '<strong class="text-danger">{message}</strong>',
     };
     // Create/Edit rule validation
     if ($('#create_rule_form').length > 0 || $('#edit_rule_form').length > 0){
@@ -74,6 +75,7 @@ jQuery(document).ready(function ($) {
         'alert': '<div class="notice notice-warning is-dismissible"><p>{message}</p></div>',
         'uri_len': '<strong class="text-danger">{message}</strong>',
         'redirect_to_len': '<strong class="text-danger">{message}</strong>',
+        'http_status_code_error': '<strong class="text-danger">{message}</strong>',
     };
     $('#edit_rule_form').submit(function (e) {
         e.preventDefault();
@@ -107,6 +109,7 @@ jQuery(document).ready(function ($) {
         'success': '<div class="notice notice-success is-dismissible"><p>{message}</p></div>',
         'nonce': '<div class="notice notice-warning is-dismissible"><p>{message} <a href="{url}">{url_text}</a></p></div>',
         'alert': '<div class="notice notice-warning is-dismissible"><p>{message}</p></div>',
+        'http_status_code_error': '<strong class="text-danger">{message}</strong>',
     };
     $('#settings_form').submit(function (e) {
         e.preventDefault();

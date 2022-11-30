@@ -12,5 +12,6 @@ class Deactivate extends Controller
     {
         $this->update_setting('status', 0);
         $this->update_setting('error_404', 0);
+        $this->update_setting('system_status', 0);
     }
 }

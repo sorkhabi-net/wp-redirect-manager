@@ -33,6 +33,11 @@ class Edit extends Controller
         $uri = trim($_POST['uri']);
         $redirect_to = trim($_POST['redirect_to']);
         $status = $_POST['status'] == 1 ? 1 : 0;
+        $http_status_code = intval($_POST['http_status_code']);
+        $statusList = Helper::http_status_code();
+        if (in_array($_POST['http_status_code'], array_keys($statusList)) === false) {
+            $this->jsonify('http_status_code_error', __('http status code is not valid.', 'SDWPRM'));
+        }
         if (mb_strlen($uri, 'UTF-8') == 0 or mb_strlen($uri, 'UTF-8') > 255) {
             $this->jsonify('uri_len', __('Redirect from must be 1 char and under 255 char', 'SDWPRM'));
         }
@@ -51,12 +56,13 @@ class Edit extends Controller
             [
                 'uri' => $uri,
                 'redirect_to' => $redirect_to,
+                'http_status_code' => $http_status_code,
                 'status' => $status,
             ],
             [
                 'id' => $rule->id,
             ],
-            ['%s', '%s', '%d'],
+            ['%s', '%s', '%d', '%d'],
             ['%d']
         );
         if (isset($_GET['error_404'])) {
