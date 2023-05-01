@@ -5,6 +5,9 @@ jQuery(document).ready(function ($) {
             template = template.replace('{' + key + '}', data[key]);
         };
         $('#' + data['type']).html(template);
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $('#' + data['type']).offset().top - 50
+        }, 2000);
     }
     var create_rule_templates = {
         'nonce': '<div class="notice notice-warning is-dismissible"><p>{message} <a href="{url}">{url_text}</a></p></div>',
