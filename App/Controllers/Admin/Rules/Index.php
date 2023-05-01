@@ -22,7 +22,7 @@ class Index extends Controller
 
         $query = "SELECT * FROM `{$this->rules_table_name}`";
 
-        $total_query = "SELECT COUNT(1) FROM (${query}) AS combined_table";
+        $total_query = "SELECT COUNT(1) FROM ({$query}) AS combined_table";
         $total = $wpdb->get_var($total_query);
 
         $rules = $wpdb->get_results("{$query} ORDER BY `id` DESC LIMIT  {$offset}, {$items_per_page}");
