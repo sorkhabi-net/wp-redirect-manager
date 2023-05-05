@@ -11,7 +11,7 @@ class AdminMenuPage extends Controller
     private function pages ()
     {
         global $wpdb;
-        if ($this->get_setting('system_status')){
+        if (is_admin ()){
             $error_count = $wpdb->get_var("SELECT COUNT(*) FROM `$this->error_404_table_name`");
         }else{
             $error_count = 0;
