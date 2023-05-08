@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Base;
+namespace SWPRM\Base;
 
-use App\Base\Controller;
-use App\Routers\Admin;
+use SWPRM\Base\Controller;
+use SWPRM\Routers\Admin;
 
 class Router extends Controller
 {

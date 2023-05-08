@@ -1,11 +1,11 @@
 <?php
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App;
+namespace SWPRM;
 
-use App\Base\Controller;
+use SWPRM\Base\Controller;
 
  final class App 
  {

@@ -1,18 +1,18 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Routers;
+namespace SWPRM\Routers;
 
-use App\Base\Controller;
-use App\Controllers\Admin\Error404;
-use App\Controllers\Admin\Settings;
-use App\Controllers\Admin\Rules\Index as RulesIndex;
-use App\Controllers\Admin\Rules\Edit as RulesEdit;
-use App\Controllers\Admin\Rules\Create as RulesCreate;
-use App\Controllers\Admin\Rules\Delete as RulesDelete;
+use SWPRM\Base\Controller;
+use SWPRM\Controllers\Admin\Error404;
+use SWPRM\Controllers\Admin\Settings;
+use SWPRM\Controllers\Admin\Rules\Index as RulesIndex;
+use SWPRM\Controllers\Admin\Rules\Edit as RulesEdit;
+use SWPRM\Controllers\Admin\Rules\Create as RulesCreate;
+use SWPRM\Controllers\Admin\Rules\Delete as RulesDelete;
 
 class Admin extends Controller
 {

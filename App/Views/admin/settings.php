@@ -1,7 +1,7 @@
 <?php
 
-use App\Base\Helper;
-use App\Base\Notice;
+use SWPRM\Base\Helper;
+use SWPRM\Base\Notice;
 
 defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">

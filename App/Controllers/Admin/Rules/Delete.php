@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Controllers\Admin\Rules;
+namespace SWPRM\Controllers\Admin\Rules;
 
-use App\Base\Controller;
+use SWPRM\Base\Controller;
 
 class Delete extends Controller
 {

@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Controllers\Admin\Rules;
+namespace SWPRM\Controllers\Admin\Rules;
 
-use App\Base\Controller;
+use SWPRM\Base\Controller;
 
 class Index extends Controller
 {
@@ -17,7 +17,7 @@ class Index extends Controller
             $this->update_setting('status', 1);
         }
         $items_per_page = 10;
-        $page = isset($_GET['cpage']) ? intval ($_GET['cpage']) : 1;
+        $page = intval ($_GET['cpage'] ?? 1);
         $offset = ($page * $items_per_page) - $items_per_page;
 
         $query = "SELECT * FROM `{$this->rules_table_name}`";

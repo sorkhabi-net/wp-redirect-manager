@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Base;
+namespace SWPRM\Base;
 
-use App\Base\Controller;
+use SWPRM\Base\Controller;
 
 class SettingsApi extends controller
 {
@@ -115,7 +115,7 @@ class SettingsApi extends controller
         if (count($this->admin_pages) > 0) {
             add_action('admin_menu', [$this, 'add_admin_menu']);
             // Add settings link in plugin page
-            add_filter('plugin_action_links_' . SDWPRM_BASE_FILE, [$this, 'settings_link']);
+            add_filter('plugin_action_links_' . SWPRM_BASE_FILE, [$this, 'settings_link']);
         }
     }
 }

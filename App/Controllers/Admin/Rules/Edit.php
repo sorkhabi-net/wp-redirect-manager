@@ -1,34 +1,34 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Controllers\Admin\Rules;
+namespace SWPRM\Controllers\Admin\Rules;
 
-use App\Base\Controller;
-use App\Base\Helper;
-use App\Base\Notice;
+use SWPRM\Base\Controller;
+use SWPRM\Base\Helper;
+use SWPRM\Base\Notice;
 
 class Edit extends Controller
 {
     public function post()
     {
         global $wpdb;
-        $id = $_GET['id'] ?? 0;
+        $id = intval ($_GET['id'] ?? 0);
         // CSRF Check
         if (!(isset($_POST['form_nonce']) && wp_verify_nonce($_POST['form_nonce'], $this->plugin_slug . 'edit_rule'))) {
-            $message = __('Something went wrong. Please refresh page and try again.', 'SDWPRM');
+            $message = __('Something went wrong. Please refresh page and try again.', 'SWPRM');
             $url = $this->route('rules.edit', ['id' => $id]);
             $url_text = __('Click here');
             $this->jsonify('nonce', compact('message', 'url', 'url_text'));
         }
         if (!isset($_POST['uri']) or !isset($_POST['redirect_to']) or !isset($_POST['status'])) {
-            $this->jsonify('alert', __('Please enter all required inputs.', 'SDWPRM'));
+            $this->jsonify('alert', __('Please enter all required inputs.', 'SWPRM'));
         }
         $rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `id`='{$id}' LIMIT 1");
         if ($rule === null) {
-            $this->jsonify('alert', __('Redirect rule is not exists.', 'SDWPRM'));
+            $this->jsonify('alert', __('Redirect rule is not exists.', 'SWPRM'));
         }
         $uri = trim($_POST['uri']);
         if (mb_strlen($uri, 'UTF-8') != 1 and mb_substr($uri, 0, 1, 'UTF-8') == '/') {
@@ -39,17 +39,17 @@ class Edit extends Controller
         $http_status_code = intval($_POST['http_status_code']);
         $statusList = Helper::http_status_code();
         if (in_array($_POST['http_status_code'], array_keys($statusList)) === false) {
-            $this->jsonify('http_status_code_error', __('http status code is not valid.', 'SDWPRM'));
+            $this->jsonify('http_status_code_error', __('http status code is not valid.', 'SWPRM'));
         }
         if (mb_strlen($uri, 'UTF-8') == 0 or mb_strlen($uri, 'UTF-8') > 255) {
-            $this->jsonify('uri_len', __('Redirect from must be 1 char and under 255 char', 'SDWPRM'));
+            $this->jsonify('uri_len', __('Redirect from must be 1 char and under 255 char', 'SWPRM'));
         }
         if (mb_strlen($redirect_to, 'UTF-8') == 0 or mb_strlen($redirect_to, 'UTF-8') > 255) {
-            $this->jsonify('redirect_to_len', __('Redirect to must be 1 char and under 255 char', 'SDWPRM'));
+            $this->jsonify('redirect_to_len', __('Redirect to must be 1 char and under 255 char', 'SWPRM'));
         }
         $other_rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `uri`='{$uri}' and `id`!='{$id}' LIMIT 1");
         if ($other_rule !== null) {
-            $message = __('Redirect rule is duplicate you can edit old rule.', 'SDWPRM');
+            $message = __('Redirect rule is duplicate you can edit old rule.', 'SWPRM');
             $url = $this->route('rules.edit', ['id' => $other_rule->id]);
             $url_text = __('Click here');
             $this->jsonify('duplicate', compact('message', 'url', 'url_text'));
@@ -79,8 +79,8 @@ class Edit extends Controller
     public function index()
     {
         global $wpdb;
-        $id = $_GET['id'] ?? 0;
-        $error_id = isset($_GET['error_404']) ? intval($_GET['error_404']) : 0;
+        $id = intval ($_GET['id'] ?? 0);
+        $error_id = intval($_GET['error_404'] ?? 0);
         $rule = $wpdb->get_row("SELECT * FROM `{$this->rules_table_name}` WHERE `id`='{$id}' LIMIT 1");
         if ($rule !== null) {
             $this->admin_view('rules.edit', compact('rule', 'error_id'));

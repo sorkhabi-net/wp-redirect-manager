@@ -1,7 +1,7 @@
 <?php
 
-use App\Base\Notice;
-use App\Base\Helper;
+use SWPRM\Base\Notice;
+use SWPRM\Base\Helper;
 
 defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">
@@ -17,7 +17,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
             <tr>
                 <th scope="row"><label for="uri">Redirect from:</label></th>
                 <td>
-                    <?php echo site_url(); ?>/<input name="uri" type="text" id="uri" value="<?php echo $uri; ?>" class="regular-text" required="required" />
+                    <?php echo site_url(); ?>/<input name="uri" type="text" id="uri" value="<?php echo esc_html($uri); ?>" class="regular-text" required="required" />
                     <p class="description alerts" id="uri_len"></p>
                 </td>
             </tr>

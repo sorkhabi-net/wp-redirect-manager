@@ -1,6 +1,6 @@
 <?php
 
-use App\Base\Notice;
+use SWPRM\Base\Notice;
 
 defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">
@@ -45,7 +45,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                     <tr>
                         <td class="manage-column">
                             <span class="<?php echo $class; ?>" dir="ltr">
-                                <span class="dashicons dashicons-admin-links"></span> <?php echo site_url() . '/' . $rule->uri; ?>
+                                <span class="dashicons dashicons-admin-links"></span> <?php echo site_url() . '/' . esc_html($rule->uri); ?>
                             </span>
                         </td>
                         <td class="manage-column">
@@ -61,7 +61,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                                 } else {
                                     $redirect_to = $rule->redirect_to;
                                 }
-                                echo $redirect_to;
+                                echo esc_html($redirect_to);
                                 ?>
                             </span>
                         </td>
@@ -115,8 +115,8 @@ defined('ABSPATH') or die('Access denied!'); ?>
         ?>
     <?php } else { ?>
         <div class="notice notice-danger is-dismissible">
-            <p><?php _e('You have not registered anything.', 'SDWPRM'); ?>
-                <a href="<?php echo $this->route('rules.create'); ?>"><strong><?php _e('Add new redirect rule', 'SDWPRM'); ?></strong></a>
+            <p><?php _e('You have not registered anything.', 'SWPRM'); ?>
+                <a href="<?php echo $this->route('rules.create'); ?>"><strong><?php _e('Add new redirect rule', 'SWPRM'); ?></strong></a>
             </p>
         </div>
     <?php } ?>

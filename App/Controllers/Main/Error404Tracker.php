@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Controllers\Main;
+namespace SWPRM\Controllers\Main;
 
-use App\Base\Helper;
-use App\Base\Controller;
+use SWPRM\Base\Helper;
+use SWPRM\Base\Controller;
 
 class Error404Tracker extends Controller
 {
@@ -15,9 +15,6 @@ class Error404Tracker extends Controller
     public function handle()
     {
         global $wpdb;
-        if (!$this->get_setting ('error_404')) {
-            return;
-        }
         if (!is_404()) {
             return;
         }
@@ -58,7 +55,7 @@ class Error404Tracker extends Controller
         }
 
         $uri = urldecode($uri);
-        
+
 
         $uri_hash = Helper::hash($uri);
 
@@ -76,14 +73,15 @@ class Error404Tracker extends Controller
                 ],
                 ['%s', '%s', '%d', '%s']
             );
-        }else{
+        } else {
             // Update view count
             $wpdb->query("UPDATE `{$this->error_404_table_name}` SET `view` = `view`+1, `last_view_at`='{$now}' WHERE `id`='{$error->id}' LIMIT 1");
         }
     }
     public function run()
     {
-        add_action('template_redirect', [$this, 'handle']);
-        return;
+        if ($this->get_setting('error_404')){
+            add_action('template_redirect', [$this, 'handle']);
+        }
     }
 }

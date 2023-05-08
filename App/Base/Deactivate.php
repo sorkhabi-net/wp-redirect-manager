@@ -1,17 +1,15 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Base;
+namespace SWPRM\Base;
 
 class Deactivate extends Controller
 {
     public function run()
     {
-        $this->update_setting('status', 0);
-        $this->update_setting('error_404', 0);
-        $this->update_setting('system_status', 0);
+        // do somethings...
     }
 }

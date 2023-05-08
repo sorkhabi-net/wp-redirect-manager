@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Controllers\Admin;
+namespace SWPRM\Controllers\Admin;
 
-use App\Base\Controller;
+use SWPRM\Base\Controller;
 
 class Error404 extends Controller
 {
@@ -17,7 +17,7 @@ class Error404 extends Controller
             $this->update_setting('error_404', 1);
         }
         $items_per_page = 10;
-        $page = isset($_GET['cpage']) ? intval($_GET['cpage']) : 1;
+        $page = intval($_GET['cpage'] ?? 1);
         $offset = ($page * $items_per_page) - $items_per_page;
 
         $query = "SELECT * FROM `{$this->error_404_table_name}`";

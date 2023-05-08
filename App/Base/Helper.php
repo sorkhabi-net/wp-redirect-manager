@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Base;
+namespace SWPRM\Base;
 
 class Helper
 {
@@ -18,13 +18,13 @@ class Helper
     }
     public static function http_status_code ($status = null){
         $statusList = [
-            '0' => __('Default', 'SDWPRM'),
-            '301' => __('301 Moved Permanently', 'SDWPRM'),
-            '302' => __('302 Found', 'SDWPRM'),
-            '303' => __('303 See Other', 'SDWPRM'),
-            '304' => __('304 Not Modified', 'SDWPRM'),
-            '307' => __('307 Temporary Redirect', 'SDWPRM'),
-            '308' => __('308 Permanent Redirect', 'SDWPRM'),
+            '0' => __('Default', 'SWPRM'),
+            '301' => __('301 Moved Permanently', 'SWPRM'),
+            '302' => __('302 Found', 'SWPRM'),
+            '303' => __('303 See Other', 'SWPRM'),
+            '304' => __('304 Not Modified', 'SWPRM'),
+            '307' => __('307 Temporary Redirect', 'SWPRM'),
+            '308' => __('308 Permanent Redirect', 'SWPRM'),
         ];
         if ($status === null){
             return $statusList;

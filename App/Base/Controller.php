@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Base;
+namespace SWPRM\Base;
 
 class Controller
 {
@@ -14,15 +14,17 @@ class Controller
     public $asset_url;
     public $view_path;
     public $admin_view_path;
+    public $system_view_path;
     public $plugin_slug;
     public $plugin_version;
     public $rules_table_name;
+    public $error_404_table_name;
 
     public function __construct()
     {
         global $wpdb;
-        $this->plugin_slug = 'sdwprm_';
-        $this->plugin_version = SDWPRM_PLUGIN_VERSION;
+        $this->plugin_slug = 'swprm_';
+        $this->plugin_version = SWPRM_PLUGIN_VERSION;
         $this->plugin_path = plugin_dir_path(dirname(__FILE__, 2));
         $this->plugin_url = plugin_dir_url(dirname(__FILE__, 2));
         $this->app_path = plugin_dir_path(dirname(__FILE__, 1));
@@ -49,7 +51,7 @@ class Controller
             }
             require_once $view_file;
         } else {
-            echo 'View file is not exists. "' . $view_file . '"';
+            echo __('View file is not exists. "' . $view_file . '"', 'SWPRM');
         }
     }
     public function system_view($view_name, $compacts = null)
@@ -64,7 +66,7 @@ class Controller
             }
             require_once $view_file;
         } else {
-            echo 'View file is not exists. "' . $view_file . '"';
+            echo __('View file is not exists. "' . $view_file . '"', 'SWPRM');
         }
     }
     public function jsonify ($type, $result)
@@ -86,9 +88,6 @@ class Controller
     public function get_setting ($setting_key = null)
     {
         $settings = unserialize(get_option($this->plugin_slug . 'settings'));
-        if ($settings === false){
-            return [];
-        }
         if ($setting_key === null){
             return $settings;
         }else if (isset ($settings [$setting_key])){
@@ -98,6 +97,9 @@ class Controller
     public function update_setting($setting_key, $setting_value)
     {
         $settings = $this->get_setting ();
+        if ($settings === false){
+            $settings = [];
+        }
         $settings [$setting_key] = $setting_value;
         $settings = serialize ($settings);
         update_option ($this->plugin_slug . 'settings', $settings);

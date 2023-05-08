@@ -1,9 +1,9 @@
 <?php
 /**
- * @package SDWPRM
+ * @package SWPRM
  */
 
-namespace App\Base;
+namespace SWPRM\Base;
 
 class AdminEnqueue extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-use App\Base\Notice;
+use SWPRM\Base\Notice;
 
 defined('ABSPATH') or die('Access denied!'); ?>
 <div class="wrap">
@@ -27,7 +27,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
                     <tr>
                         <td class="manage-column">
                             <span class="<?php echo $class; ?>" dir="ltr">
-                                <span class="dashicons dashicons-admin-links"></span> <?php echo site_url() . '/' . $error->uri; ?>
+                                <span class="dashicons dashicons-admin-links"></span> <?php echo site_url() . '/' . esc_html($error->uri); ?>
                             </span>
                         </td>
                         <td class="manage-column d-none-sm">
@@ -70,7 +70,7 @@ defined('ABSPATH') or die('Access denied!'); ?>
         ?>
     <?php } else { ?>
         <div class="notice notice-success">
-            <p><?php _e('Very good! You have not 404 error.', 'SDWPRM'); ?></p>
+            <p><?php _e('Very good! You have not 404 error.', 'SWPRM'); ?></p>
         </div>
     <?php } ?>
 </div>
